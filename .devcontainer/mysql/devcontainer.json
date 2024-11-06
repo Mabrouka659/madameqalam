@@ -1,0 +1,6 @@
+{
+    "name": "Madame Qalam",
+    "service" : "mysql",
+    "dockerComposeFile": "../../docker-compose.dev.yaml",
+    "workspaceFolder": "/app"
+}
