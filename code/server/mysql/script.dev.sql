@@ -13,12 +13,12 @@ CREATE TABLE madameqalam_dev.role(
 );
 
 
-CREATE TABLE madameqalam_dev.Benefit(
+CREATE TABLE madameqalam_dev.benefit(
     id SMALLINT UNSIGNED  UNSIGNED PRIMARY KEY AUTO_INCREMENT,
     name VARCHAR(150) NOT NULL,
     description TEXT NOT NULL,
     category TEXT NOT NULL,
-    price DECIMAL(5,2) NOt NULL
+    price DECIMAL(5,2) NOT NULL
 
 );
 
@@ -95,7 +95,7 @@ VaLUES
   (NULL,'ines','chouchen','ineschouchen@gmail.com',2),
   (NULL,'meriem','dren','drenmeriem@gmail.com',3)
 ;
-INSERT INTO madameqalam_dev.Benefit
+INSERT INTO madameqalam_dev.benefit
 VaLUES
   (NULL,'association culturel','prestation de fete du quartier '  ,'atelier artistique ', 40  ),
   (  NULL , 'mairie ' ,'jours culturel','atelier inisation'  ,                      4     )
