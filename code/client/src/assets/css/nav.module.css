@@ -1,0 +1,31 @@
+
+
+
+
+
+
+.btn-nav-mobile{
+    display: none;
+  }
+  .site-nav{
+    display: block;
+  }
+ 
+  /* 1 rem:16 px
+  50rem: 800px
+  de 0px à 800px
+   */
+  @media screen and (max-width:50rem ) { 
+    .btn-nav-mobile{
+       display: block;
+    }
+    .site-nav {
+      display: none;
+
+  
+    }
+
+   .site-nav-visible{
+    display: block;
+   } 
+  }

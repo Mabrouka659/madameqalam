@@ -1,6 +1,6 @@
 {
-    "name": "projet - Server",
-    "service":"server",
+    "name": "projet - Client",
+    "service":"client",
     "dockerComposeFile": "../../docker-compose.dev.yaml",
     "workspaceFolder": "/app",
 
@@ -10,16 +10,16 @@
             "christian-kohler.npm-intellisense",
             "christian-kohler.path-intellisense",
             "biomejs.biome",
-            "VASubasRaj.flashpost"
+            "dsznajder.es7-react-js-snippets"
         ],
         "settings": {
-            "[javascript]": {
+            "[javascriptreact]": {
                 "editor.defaultFormatter": "biomejs.biome",
              "editor.formatOnSave": true,
              "editor.formatOnType": true
              },
 
-              "[typescript]": {
+              "[typescriptreact]": {
                 "editor.defaultFormatter": "biomejs.biome",
                 "editor.formatOnSave": true,
                 "editor.formatOnType": true

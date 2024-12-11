@@ -1,0 +1,13 @@
+/* le suffixe module permet de d'isoler les styles d'un composant 
+utiliser en priorité des classes CSS
+ */
+
+ .site-header{
+    background-color: brown;
+    padding: 1rem;
+ }
+ .site-logo {
+   width: 3rem;
+
+ }
+ 
