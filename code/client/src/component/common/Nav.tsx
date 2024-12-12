@@ -5,9 +5,10 @@ import { useRef, useState } from "react";
 const Nav = () => {
 	/* créer une référence  :lien vers un élement HTML 
     remplace l'utilisation de querySelector / querySelectorALL
+	const reférence = useRef<type de l'élemnt ciblé> (valeur initiale de la référence )
     */
 
-	const siteNav = useRef();
+	const siteNav = useRef<HTMLDivElement>(null);
 	// créer un état : useState
 	/* const [état,setter de l'etat] = userState<type l'état > (valeur initiale de l'état)*/
 	const [navMobileIsVisible, setNavMobileIsVisible] = useState<boolean>(false);
@@ -35,7 +36,7 @@ les attributs href sont remplacés to
          */}
 			<nav
 				className={`${styles["site-nav"]} ${navMobileIsVisible ? styles["site-nav-visible"] : ""}`}
-				// ref={siteNav}
+				ref={siteNav}
 			>
 				<Link to={"/"}>Home</Link>
 				<Link to={"/contact"}>contact</Link>

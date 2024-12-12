@@ -8,7 +8,7 @@ import http from "node:http";
 import HomepageRouter from "../router/homepage_router.js";
 import NotFoundRouter from "../router/not_found_router.js";
 import RoleRouter from "../router/role_router copy.js";
-
+import cors from "cors";
 class Server {
 	//propriétés
 	private app: Express = express();
@@ -16,6 +16,11 @@ class Server {
 
 	// constructeur
 	constructor() {
+
+		//gére les requêtes multi-origines 
+		//CORS: Cors Origin Resource Sharing
+		this.app.use(cors());
+
 		// relier le routeur à l'application
 		this.app.use(this.router);
 
