@@ -7,8 +7,14 @@ import express, {
 import http from "node:http";
 import HomepageRouter from "../router/homepage_router.js";
 import NotFoundRouter from "../router/not_found_router.js";
-import RoleRouter from "../router/role_router copy.js";
+import RoleRouter from "../router/role_router.js";
 import cors from "cors";
+import UserRouter from "../router/user_router.js";
+import benefitRouter from "../router/benefit_router.js";
+import CategoryRouter from "../router/category_router.js";
+import OrdersRouter from "../router/orders_router.js";
+import ImagesRouter from "../router/images_router.js";
+import artworkRouter from "../router/artwork_router.js";
 class Server {
 	//propriétés
 	private app: Express = express();
@@ -34,6 +40,13 @@ class Server {
         */
 		this.router.use("/", new HomepageRouter().getRoutes());
 		this.router.use("/role", new RoleRouter().getRoutes());
+		this.router.use("/user", new UserRouter().getRoutes());
+		this.router.use("/benefit", new benefitRouter().getRoutes());
+		this.router.use("/category", new CategoryRouter().getRoutes());
+		this.router.use("/orders", new OrdersRouter().getRoutes());
+		this.router.use("/images", new ImagesRouter().getRoutes());
+		this.router.use("/artwork", new artworkRouter().getRoutes());
+
 
 		// route des routes inexistantes doit étre obligatoirement en derniere position
 		this.router.use("*", new NotFoundRouter().getRoutes());

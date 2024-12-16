@@ -49,9 +49,9 @@ CREATE TABLE madameqalam_dev.artwork(
 
 
 CREATE TABLE madameqalam_dev.images(
-    id  TINYINT(2) UNSIGNED PRIMARY KEY AUTO_INCREMENT,
-    name VARCHAR(50) NOT NULL,
-    artwork_id TINYINT(2) UNSIGNED,
+    id   VARCHAR(50) NOT NULL,
+    artwork_id TINYINT(2) UNSIGNED,TINYINT(2) UNSIGNED PRIMARY KEY AUTO_INCREMENT,
+    name
     FOREIGN KEY (artwork_id) REFERENCES artwork(id)
 );
 
