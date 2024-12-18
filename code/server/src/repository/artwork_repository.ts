@@ -18,9 +18,24 @@ class ArtworkRepository {
 		// SELECT role.* FROM madameqalam_dev.school;
 		const sql = `
        SELECT 
-        ${this.table}.*
+        ${this.table}.*,
+		GROUP_CONCAT(orders.id) AS orders_ids
        FROM 
         ${process.env.MYSQL_DATABASE}.${this.table}
+
+			JOIN
+		${process.env.MYSQL_DATABASE}.orders
+		ON
+		orders.artwork_id =${this.table}.id
+			JOIN
+		${process.env.MYSQL_DATABASE}.user
+		ON
+		orders.user_id = user.id
+		GROUP BY 
+		${this.table}.id
+
+		
+        ;
         ;
     `;
 		// exécuter la requéte
@@ -42,13 +57,14 @@ class ArtworkRepository {
 					id: result.category_id,
 				})) as Category;
 			}
-
+            
 			// si la réquete a échouée
 			return results;
 		} catch (error) {
 			return error;
 		}
 	};
+	
 
 	public selectOne = async (
 		data: Partial<Artwork>,
@@ -57,7 +73,7 @@ class ArtworkRepository {
 		const connection = await new MySQLService().connect();
 
 		// requéte SQL
-		// SELECT role.* FROM madameqalam_dev.school WHERE id = 1;
+		// SELECT role.* FROM madameqalam_dev.artwork WHERE id = 1;
 		const sql = `
        SELECT
         ${this.table}.*
