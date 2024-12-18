@@ -1,0 +1,6 @@
+// se connecter au serveur MongoDB
+mongosh -u root --authenticationDatabase admin -p
+
+// charger un fichier JS dans le serveur MongoDB
+//à exécuter en dehors du serveur MongoDB
+mongoimport -d madameqalam_dev -c contact --file contact.dev.json --jsonArray -u root --authenticationDatabase admin

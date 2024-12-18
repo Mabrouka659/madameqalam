@@ -1,0 +1,5 @@
+{
+    "name": "Madame Qalam mongodb" ,
+    "service" : "mongodb",
+    "dockerComposeFile": "../../docker-compose.dev.yaml",
+    "workspaceFolder": "/app"}

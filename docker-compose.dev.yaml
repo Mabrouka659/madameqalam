@@ -1,6 +1,6 @@
 services:
-# base de données 
-#nom du service 
+  # base de données 
+  #nom du service 
   mysql:
     image: mysql:9
     ports:
@@ -10,7 +10,7 @@ services:
       - ./mysql-data:/var/lib/mysql
     environment:
       MYSQL_ROOT_PASSWORD: root
-    restart: always 
+    restart: always
     #serveur 
   server:
     image: node:23
@@ -18,12 +18,24 @@ services:
       - 3000:3000
     volumes:
       - ./code/server:/app
-    tty: true     
+    tty: true
     #client
-  client :
+  client:
     image: node:23
     ports:
       - 5173:5173
     volumes:
       - ./code/client:/app
-    tty: true     
+    tty: true
+  #mongo 
+  mongodb:
+    image: mongo:8
+    ports:
+      - 27017:27017
+    volumes:
+      - ./code/server/mongodb:/app
+      - ./mongodb-data:/data/db
+    environment:
+      MONGO_INITDB_ROOT_USERNAME: root
+      MONGO_INITDB_ROOT_PASSWORD: root
+    restart: always
