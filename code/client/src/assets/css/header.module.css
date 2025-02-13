@@ -3,11 +3,14 @@ utiliser en priorité des classes CSS
  */
 
  .site-header{
-    background-color: brown;
+    background-color: rgb(156, 76, 76);
     padding: 1rem;
  }
  .site-logo {
    width: 3rem;
 
  }
- 
+ .video-container {
+  width: 100vh;
+  height: 400px;
+}

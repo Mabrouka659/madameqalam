@@ -11,7 +11,7 @@ const Header = () => {
 			<div className={style["site-logo"]}>
 				{/* utiliser / pour cibler le dossier public  */}
 				<Link to={"/"}>
-					<img src="/img/logo.jpg" alt="" />
+					<img src="/img/logo.png" alt="" />
 				</Link>
 			</div>
 			<Nav />

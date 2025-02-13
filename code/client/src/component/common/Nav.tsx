@@ -2,6 +2,7 @@ import { Link } from "react-router-dom";
 import styles from "../../assets/css/nav.module.css";
 import { useRef, useState } from "react";
 
+
 const Nav = () => {
 	/* créer une référence  :lien vers un élement HTML 
     remplace l'utilisation de querySelector / querySelectorALL
@@ -38,8 +39,11 @@ les attributs href sont remplacés to
 				className={`${styles["site-nav"]} ${navMobileIsVisible ? styles["site-nav-visible"] : ""}`}
 				ref={siteNav}
 			>
-				<Link to={"/"}>Home</Link>
-				<Link to={"/contact"}>contact</Link>
+				{/* <Link to={"/"}>Home</Link> */}
+				<Link to={"/Artwork"}>Artwork</Link>
+				<Link to={"/Ateliers"}>Ateliers</Link>
+				<Link to={"/biographie"}>Biographie</Link>
+				<Link to={"/Contact"}>Contact</Link>
 			</nav>
 			{/* 
             ajouter des événements :
@@ -56,5 +60,6 @@ les attributs href sont remplacés to
 		</>
 	);
 };
-
 export default Nav;
+
+

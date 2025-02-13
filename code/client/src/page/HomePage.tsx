@@ -3,8 +3,9 @@
 // 	return (
 // 		<>
 
-import RoleList from "../component/home/RoleList";
-import ArtworkList from "../component/home/RoleList";
+import Biographie from "../component/home/Biographie";
+
+import Video from "../component/home/Video";
 
 //         <h1>Home</h1>
 
@@ -18,8 +19,13 @@ const HomePage = () => {
 	return (
 		<div className="container ">
 			<h1>Home</h1>
-			<RoleList/>
+			<section>
+				<Video />
+			</section>
+			<Biographie />
+			
 		</div>
+
 	);
 };
-export default RoleList;
+export default HomePage;

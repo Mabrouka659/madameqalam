@@ -8,7 +8,9 @@
     display: none;
   }
   .site-nav{
-    display: block;
+    display: flex;
+    justify-content: space-evenly;
+
   }
  
   /* 1 rem:16 px

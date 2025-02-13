@@ -1,3 +1,6 @@
+import "./assets/css/reset.css";
+import "./assets/css/style.css";
+
 import { Link } from "react-router-dom";
 
 const Footer = () => {
