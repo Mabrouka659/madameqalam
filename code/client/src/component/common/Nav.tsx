@@ -1,65 +1,37 @@
 import { Link } from "react-router-dom";
 import styles from "../../assets/css/nav.module.css";
-import { useRef, useState } from "react";
-
+import { useState } from "react";
 
 const Nav = () => {
-	/* créer une référence  :lien vers un élement HTML 
-    remplace l'utilisation de querySelector / querySelectorALL
-	const reférence = useRef<type de l'élemnt ciblé> (valeur initiale de la référence )
-    */
+    // ✅ État pour afficher/cacher le menu
+    const [menuOpen, setMenuOpen] = useState(false);
 
-	const siteNav = useRef<HTMLDivElement>(null);
-	// créer un état : useState
-	/* const [état,setter de l'etat] = userState<type l'état > (valeur initiale de l'état)*/
-	const [navMobileIsVisible, setNavMobileIsVisible] = useState<boolean>(false);
-	//clic sur le bouton de navigation mobile
+    // ✅ Fonction pour basculer l'affichage du menu
+	const toggleMenu = () => {
+		console.log("Bouton cliqué!");
+        setMenuOpen(!menuOpen);
+    };
 
-	const click = () => {
-		// modifier l'état à l'aide du setter
-		setNavMobileIsVisible(!navMobileIsVisible);
-		// console.log(navMobileIsVisible);
-	};
+    return (
+        <>
+            {/* Bouton menu burger (visible en mobile) */}
+            <button className={styles["btn-nav-mobile"]} type="button" onClick={toggleMenu}>
+                ☰
+            </button>
 
-	/*les balises a sont remplacées par le composant Link
-les attributs href sont remplacés to 
-*/
-	return (
-		<>
-			{/*
-        attribut ref  permet de relier une référence à une balise HTML 
-         */}
-			{/* 
-         la seul condition disponible dans le HTML de react : condition ternaire 
-         condition ? vraie : faux 
-
-         si une autre condiction est à utiliser , il est nécessaire de créer une fonction externe 
-         */}
-			<nav
-				className={`${styles["site-nav"]} ${navMobileIsVisible ? styles["site-nav-visible"] : ""}`}
-				ref={siteNav}
-			>
-				{/* <Link to={"/"}>Home</Link> */}
-				<Link to={"/Artwork"}>Artwork</Link>
-				<Link to={"/Ateliers"}>Ateliers</Link>
-				<Link to={"/biographie"}>Biographie</Link>
-				<Link to={"/Contact"}>Contact</Link>
-			</nav>
-			{/* 
-            ajouter des événements :
-            - utiliser l'événement directement dans la balise
-            -dans le composant, créer une fonction liée à l'évenement 
-            */}
-			<button
-				className={styles["btn-nav-mobile"]}
-				type="button"
-				onClick={click}
-			>
-				-
-			</button>
-		</>
-	);
+            {/* Menu de navigation */}
+            <nav className={`${styles["site-nav"]} ${menuOpen ? styles["site-nav-visible"] : ""}`}>
+                <Link to="/" onClick={toggleMenu}>Accueil</Link>
+                <Link to="/Oeuvres" onClick={toggleMenu}>Oeuvres</Link>
+                <Link to="/Ateliers" onClick={toggleMenu}>Ateliers</Link>
+                <Link to="/biographie" onClick={toggleMenu}>Biographie</Link>
+                <Link to="/Contact" onClick={toggleMenu}>Contact</Link>
+            </nav>
+        </>
+    );
 };
+
 export default Nav;
+
 
 

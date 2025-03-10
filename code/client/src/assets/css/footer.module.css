@@ -1,0 +1,51 @@
+/* Footer */
+
+/* footer {
+  text-align: center;
+  padding: 20px;
+  background: #f0eaead5;
+  color: rgb(26, 16, 16);
+
+  
+} */
+/* Footer comme le Header */
+
+.footer {
+  width: 100%;
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  /* couleur de fond  pour une meilleure visibilité  */
+  background-color: #f8f8f8;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;/* Permet d'espacer le logo et le texte */
+  /* padding: 10px; */
+  height: 60px;
+}
+
+.logo {
+  max-width: 160px;
+  height: auto;
+  
+}
+.logo img {
+  width: 160px; /* Ajuste cette valeur selon la taille désirée */
+  height: auto;
+  display: block; /* Pour éviter les marges blanches inutiles */
+}
+
+.footercontent {
+  display: flex;
+  align-items: center;
+  width: 100%;
+  justify-content: space-between; /* Espacement entre logo et texte */
+}
+
+
+.footertext {
+  flex: 1;
+  /* padding-bottom: 40px;  */
+  /* Ajuste selon la hauteur du footer */
+  text-align: center;
+}

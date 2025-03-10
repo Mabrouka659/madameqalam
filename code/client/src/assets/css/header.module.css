@@ -2,15 +2,87 @@
 utiliser en priorité des classes CSS
  */
 
- .site-header{
-    background-color: rgb(156, 76, 76);
-    padding: 1rem;
- }
- .site-logo {
-   width: 3rem;
+ .menu-btn{display: none;}
 
+ .site-header{
+    
+    
+    display: flex;
+    
+    justify-content: space-between; /* Sépare le logo et le menu */
+ 
+  align-items: center;
+     padding: 10px 30px;
+     
+      height: 80px;
+    background: linear-gradient(to right, #FFFFFF, #fad7c4); /* Dégradé pour un effet doux */
+   
+    position: fixed; /* Garde le header en haut de l'écran */
+    top: 0;
+    left: 0;
+    width: 100%;
+    z-index: 1000;
+    overflow: hidden;/* Pour Évite le débordement */
  }
- .video-container {
-  width: 100vh;
-  height: 400px;
+ .main-container{
+  padding-top:120px ;
+ }
+ .site-logo  {
+  display: flex; 
+  align-items: center; /* Centre le logo verticalement */
+  justify-content: flex-start; /* Aligne le logo à gauche */
+  height: 60px;
+}
+.logo {
+  max-width: 160px;
+  height: auto;
+}
+
+.logo-container {
+  display: flex;
+  
+  justify-content:flex-start ; /* Alignement à gauche */
+
+  align-items: center;
+  flex: 0.3; /* Réduit l'espace occupé par le logo */
+}
+.logo-container img {
+  width: 120px; /* Ajuste selon tes besoins */
+  height: auto;
+}
+.site-nav {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end; /* Place le menu à droite */
+  gap: 25px; /* Espace entre les liens du menu */
+  flex: 0.7;/* Permet au menu de prendre l'espace restant */
+}
+  /* 🚀 Responsive : Masquer la navigation sur mobile */
+@media (max-width: 768px) {
+  .site-nav {
+      display: none;
+       /* Cache le menu sur petit écran */
+  }
+
+  .menu-btn {
+      display: block; /* Affiche le bouton burger */
+      cursor: pointer;
+      font-size: 24px;
+      background: none;
+      border: none;
+      color: #000;
+  }
+}
+
+/* Afficher le menu quand il est activé */
+.site-nav.active {
+  display: flex;
+  flex-direction: column;
+  position: absolute;
+  top: 80px;
+  right: 0;
+  background: #fff;
+  width: 200px;
+  padding: 10px;
+  border-radius: 5px;
 }

@@ -28,6 +28,9 @@ class Server {
 		//CORS: Cors Origin Resource Sharing
 		this.app.use(cors());
 
+		// accéder au contenu d'une requéte HTTP-propriété body-au format JSON 
+		this.app.use(express.json());
+
 		// relier le routeur à l'application
 		this.app.use(this.router);
 
@@ -46,7 +49,7 @@ class Server {
 		this.router.use("/category", new CategoryRouter().getRoutes());
 		this.router.use("/orders", new OrdersRouter().getRoutes());
 		this.router.use("/images", new ImagesRouter().getRoutes());
-
+		this.router.use("/artwork", new artworkRouter().getRoutes());
 		this.router.use("/contact", new ContactRouter().getRoutes());
 
 

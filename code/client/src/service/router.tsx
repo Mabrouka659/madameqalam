@@ -4,7 +4,7 @@ import ContactPage from "../page/ContactPage";
 import BaseLayout from "../layout/BaseLayout";
 import ArtworkPage from "../page/ArtworkPage";
 import BiographiePage from "../page/BiographiePage";
-// import AteliersPage from "../page/AteliersPage";
+import AteliersPage from "../page/AteliersPage";
 
 const router = createBrowserRouter([
 
@@ -19,7 +19,7 @@ const router = createBrowserRouter([
 		children: [
 			
 			{
-				path: "",
+				path: "accueil",
 				element: <HomePage />,
 			},
 			
@@ -30,7 +30,7 @@ const router = createBrowserRouter([
 
 			
 			{
-				path: "artwork",
+				path: "oeuvres",
 				element: <ArtworkPage />,
 			},
 		
@@ -39,10 +39,10 @@ const router = createBrowserRouter([
 				element: <BiographiePage />,
 			},
 			
-			// {
-			// 	path: "ateliers",
-			// 	element: <AteliersPage />,
-			// },
+			{
+				path: "ateliers",
+				element: <AteliersPage />,
+			},
 			
 
 			

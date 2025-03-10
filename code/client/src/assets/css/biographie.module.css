@@ -1,0 +1,89 @@
+.biographie {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 50px 0;
+  min-height: 100vh;
+ 
+}
+
+.bio-container {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  max-width: 1000px;
+  width: 90%;
+  gap: 30px;
+  margin-bottom: 100px;
+  min-height: 80vh;
+}
+
+.bio-text {
+  flex: 1;
+  text-align: left;
+}
+
+.bio-text h2 {
+  font-size: 28px;
+  margin-bottom: 15px;
+}
+
+.bio-text p {
+  font-size: 18px;
+  line-height: 1.5;
+}
+
+.bio-text button {
+  margin-top: 15px;
+  padding: 10px 20px;
+  background-color: #BF4C41;
+  color: white;
+  border: none;
+  cursor: pointer;
+  font-size: 16px;
+  border-radius: 5px;
+}
+
+.bio-text button:hover {
+  background-color: #a04038;
+}
+
+.bio-image {
+  flex: 1;
+  display: flex;
+  justify-content: flex-end;
+  
+}
+
+.bio-image img {
+  max-width: 100%;
+  
+  height: auto;
+  border-radius: 250px;
+}
+
+/* Adaptation pour mobile */
+@media (max-width: 768px) {
+  .bio-container {
+    flex-direction: column;
+    text-align: center;
+  }
+
+  .bio-text, .bio-image {
+    flex: none;
+    width: 100%;
+  }
+
+  .bio-image {
+    justify-content: center;
+    margin-top: 20px;
+  }
+}
+
+  
+  
+   
+  
+
+ 
+ 

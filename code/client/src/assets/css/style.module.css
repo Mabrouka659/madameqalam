@@ -1,0 +1,36 @@
+/* styles commun à toutes les pages 
+ */
+
+ body {
+  font-family: 'Arial', sans-serif;
+ margin: 0;
+  padding: 0;
+  background: linear-gradient(to bottom, #F4CA96, #7E83E7,#FFFFFF);
+}
+
+.container {
+  width: 80%;
+  margin: auto;
+  text-align: center;
+
+}
+html, body {
+  height: 100%;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+}
+.main-container {
+  flex: 1;
+}
+
+
+/* Ajoute un espace sous le header pour éviter qu'il ne cache le contenu */
+body {
+  padding-top: 200px;
+   /* Ajuste cette valeur en fonction de la hauteur du header */
+}
+
+
+
+

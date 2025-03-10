@@ -1,24 +1,14 @@
 
-//import img from "../component/home/3chek.jpg";
+// import img from "../component/home/droitdefemmes.jpg";
 
-// const AteliersPage = () => {
+const AteliersPage = () => {
+  return (
+    <header>
+      <div></div>
+  </header>
+)
 
+       
+ };
 
-  //
-
-
-
-
-   // )
-
-
-
-    // return <>
-    //    
-        
-    //    
-
-    //    
-//  };
-
-// export default AteliersPage;
+export default AteliersPage;

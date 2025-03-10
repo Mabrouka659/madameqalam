@@ -23,11 +23,11 @@ class ArtworkRepository {
        FROM 
         ${process.env.MYSQL_DATABASE}.${this.table}
 
-			JOIN
+			LEFT JOIN
 		${process.env.MYSQL_DATABASE}.orders
 		ON
 		orders.artwork_id =${this.table}.id
-			JOIN
+			 LEFT JOIN
 		${process.env.MYSQL_DATABASE}.user
 		ON
 		orders.user_id = user.id
@@ -103,6 +103,115 @@ class ArtworkRepository {
 			return error;
 		}
 	};
+
+
+	// créér un enregistrement 
+	public insert = async (
+		data: Partial<Artwork>,
+	): Promise<Artwork | unknown> => {
+		// connexion au serveur MYSQL
+		const connection = await new MySQLService().connect();
+
+		// requéte SQL
+		// SELECT role.* FROM madameqalam_dev.artwork WHERE id = 1;
+		const sql = `
+				INSERT INTO
+				${process.env.MYSQL_DATABASE}.${this.table}
+				VALUE 
+				(
+					NULL,
+					:name,
+					:price,
+					:description,
+					:category_id
+				)
+        ;
+    `;
+		// exécuter la requéte
+		//try / catch : permet d'éxecuter une instruction . si l'instruction échoue , une erreur
+		// est récupérée
+		try {
+			// récupérer les résultats de la requéte
+			const [results] = await connection.execute(sql, data);
+
+			
+			// si la requète a réussi
+			return results;
+		} catch (error) {
+			return error;
+		}
+	};
+//  modifier un enregistrement 
+	public update= async (
+		data: Partial<Artwork>,
+	): Promise<Artwork | unknown> => {
+		// connexion au serveur MYSQL
+		const connection = await new MySQLService().connect();
+
+		// requéte SQL
+		// SELECT role.* FROM madameqalam_dev.artwork WHERE id = 1;
+		const sql = `
+				UPDATE
+				${process.env.MYSQL_DATABASE}.${this.table}
+				SEt
+				
+					
+				    ${this.table}.name = :name,
+					${this.table}.price = :price,
+					${this.table}.description =:description,
+					${this.table}.category_id = :category_id
+				WHERE	
+				${this.table}.id = :id
+				
+        ;
+    `;
+		// exécuter la requéte
+		//try / catch : permet d'éxecuter une instruction . si l'instruction échoue , une erreur
+		// est récupérée
+		try {
+			// récupérer les résultats de la requéte
+			const [results] = await connection.execute(sql, data);
+
+			
+			// si la requète a réussi
+			return results;
+		} catch (error) {
+			return error;
+		}
+	};
+
+	// supprimer un enregistrement
+	public delete= async (
+		data: Partial<Artwork>,
+	): Promise<Artwork | unknown> => {
+		// connexion au serveur MYSQL
+		const connection = await new MySQLService().connect();
+
+		// requéte SQL
+		// SELECT role.* FROM madameqalam_dev.artwork WHERE id = 1;
+		const sql = `
+				DELETE FROM
+				${process.env.MYSQL_DATABASE}.${this.table}
+				WHERE	
+				${this.table}.id = :id
+				
+        ;
+    `;
+		// exécuter la requéte
+		//try / catch : permet d'éxecuter une instruction . si l'instruction échoue , une erreur
+		// est récupérée
+		try {
+			// récupérer les résultats de la requéte
+			const [results] = await connection.execute(sql, data);
+
+			
+			// si la requète a réussi
+			return results;
+		} catch (error) {
+			return error;
+		}
+	};
+
 }
 
 export default ArtworkRepository;

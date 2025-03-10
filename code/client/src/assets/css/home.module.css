@@ -1,0 +1,13 @@
+.video-container {
+    width: 100vh;
+    height: 400px;
+  }
+  body {
+    font-family: 'Arial', sans-serif;
+    background: linear-gradient(to bottom, #fad0c4, #ffd1ff);
+     color: #696060;
+    margin: 0;
+    padding: 0;
+    background: linear-gradient(to bottom, #F4CA96, #7E83E7,#FFFFFF);
+  }
+  

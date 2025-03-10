@@ -1,0 +1,76 @@
+/* .contact {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 50px 0;
+    min-height: 100vh;
+   
+  } */
+
+  body {
+    padding: 150px  ; /* 🔹 Ajoute un espace en haut pour éviter que le header cache le contenu */
+}
+
+  .contact {
+    max-width: 600px;
+    margin: auto;
+    padding:   100px ;
+    background: #fff;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    border-radius: 10px;
+    margin-bottom: 100px; 
+}
+
+.contact h1 {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.contact-form {
+    display: flex;
+    flex-direction: column;
+}
+
+.form-group {
+    margin-bottom: 15px;
+}
+
+label {
+    font-weight: bold;
+    display: block;
+    margin-bottom: 5px;
+}
+
+input, select, textarea {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 16px;
+}
+
+textarea {
+    resize: none;
+}
+
+.submit-btn {
+    padding: 10px 20px;
+    background-color: #BF4C41;
+    color: white;
+    border: none;
+    cursor: pointer;
+    font-size: 16px;
+    border-radius: 5px;
+    text-align: center;
+}
+
+.submit-btn:hover {
+    background-color: #a04038;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    .contact {
+        width: 90%;
+    }
+}

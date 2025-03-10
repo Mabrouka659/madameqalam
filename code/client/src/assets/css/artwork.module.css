@@ -1,0 +1,49 @@
+.art-container {
+  display: flex;
+  align-items: center;
+  justify-content: space-between; /* 🔹 Place le texte à gauche et l’image à droite */
+  max-width: 1000px;
+  width: 90%;
+  gap: 30px;
+  margin: auto;  /* 🔹 Centre le conteneur */
+  min-height: 80vh;
+}
+.art-text {
+  flex: 1; /* 🔹 Le texte prend 50% de la largeur */
+  max-width: 50%;
+  text-align: left;
+}
+
+.art-image {
+  flex: 1; /* 🔹 L’image prend aussi 50% de la largeur */
+  display: flex;
+  justify-content: flex-end; /* 🔹 Aligner l’image à droite */
+}
+
+.art-image img {
+  max-width: 100%; /* 🔹 L’image s’adapte bien */
+  height: auto;
+  border-radius: 20px;
+}
+@media (max-width: 768px) {
+  .art-container {
+      flex-direction: column; /* 🔹 Place l’image en haut et le texte en bas */
+      text-align: center; /* 🔹 Centre le texte */
+  }
+
+  .art-text, .art-image {
+      flex: none;
+      width: 100%; /* 🔹 Chaque élément prend toute la largeur */
+  }
+
+  .art-image {
+      justify-content: center; /* 🔹 Centre l’image */
+      margin-bottom: 20px; /* 🔹 Ajoute un espace entre l’image et le texte */
+  }
+
+  .art-text {
+      max-width: 600px;
+      width: 90%;
+      margin: auto; /* 🔹 Centre le texte */
+  }
+}
