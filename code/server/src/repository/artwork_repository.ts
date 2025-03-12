@@ -131,13 +131,26 @@ class ArtworkRepository {
 		//try / catch : permet d'éxecuter une instruction . si l'instruction échoue , une erreur
 		// est récupérée
 		try {
+			
+			// exécute la premiére requéte 
+			await connection.execute(sql, data);
+			// deuxième requète SQL de la transaction
+			
+
+
+
+
+			// resultat represent le premiere 
 			// récupérer les résultats de la requéte
 			const [results] = await connection.execute(sql, data);
-
-			
+// valider la transaction l'orsque l'ensemble des requétes d'une transation ont réussi 
+			connection.commit();
 			// si la requète a réussi
 			return results;
 		} catch (error) {
+			// annuler l'ensemble des réquetes de la transation si l'une des requétes d'une transaction ont réussi 
+			connection.rollback();
+			//si la requéte a échoué
 			return error;
 		}
 	};
@@ -215,3 +228,48 @@ class ArtworkRepository {
 }
 
 export default ArtworkRepository;
+
+
+
+
+// - TRansaction sql
+// -- aller dans try 
+// -- creer un TRansaction
+
+// -- connection.beginTransaction();
+
+// -- executer la premiere requetes
+
+// -- awit connection.execute(sql,data);
+
+// -- executer la deuxiéme requetes  apres on change  le const a let 
+
+// -- sql = INSERT INTO
+// -- ${process.env.MYSQL_DATABASE}.nom_de table
+// -- VALUES(
+// -- NULL?
+// -- 64,
+// -- 1),
+// -- (NULL,
+// -- 64,
+// -- 2)
+
+// -- en bas de const result
+
+// -- on ecrit 
+// -- valider la transation lorsque l'ensemble de requetes ont reusi
+
+// -- connection.commit();
+
+// -- apres je viens dans le catch(error)
+// -- annuler l'ensmble des requetes de la transation si l'une des requetes a ecchoué
+
+// -- connection.rollback();
+// 
+// pour créer une variable SQL stockant le derienier identifiant créé
+
+// sql = '
+
+// 
+// 
+// 

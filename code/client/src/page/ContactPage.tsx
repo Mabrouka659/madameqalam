@@ -27,6 +27,7 @@
 // export default ContactPage;
 import styles from '../assets/css/contact.module.css';
 import { useState } from 'react';
+import profileImage from'../../public/img/profileImage.jpg'
 
 const ContactPage = () => {
     const [formData, setFormData] = useState({
@@ -47,7 +48,13 @@ const ContactPage = () => {
     };
 
     return (
+
+        
         <section className={styles["contact"]}>
+            <div className={styles["contactImage"]}>
+                
+</div>
+
             <h1>Contactez  Madame Qalam</h1>
             <form onSubmit={handleSubmit} className={styles["contact-form"]}>
                 
