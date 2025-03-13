@@ -31,10 +31,10 @@ utiliser en priorité des classes CSS
   display: flex; 
   align-items: center; /* Centre le logo verticalement */
   justify-content: flex-start; /* Aligne le logo à gauche */
-  height: 60px;
+  height: 80px;
 }
 .logo {
-  max-width: 160px;
+  max-width: 260px;
   height: auto;
 }
 

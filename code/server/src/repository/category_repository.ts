@@ -40,7 +40,7 @@ class CategoryRepository {
 		const connection = await new MySQLService().connect();
 
 		// requéte SQL
-		// SELECT role.* FROM madameqalam_dev.school WHERE id = 1;
+		// SELECT role.* FROM madameqalam_dev.category WHERE id = 1;
 		const sql = `
        SELECT
         ${this.table}.*

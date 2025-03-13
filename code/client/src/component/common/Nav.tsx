@@ -21,7 +21,7 @@ const Nav = () => {
 
             {/* Menu de navigation */}
             <nav className={`${styles["site-nav"]} ${menuOpen ? styles["site-nav-visible"] : ""}`}>
-                <Link to="/" onClick={toggleMenu}>Accueil</Link>
+                <Link to="/Accueil" onClick={toggleMenu}>Accueil</Link>
                 <Link to="/Oeuvres" onClick={toggleMenu}>Oeuvres</Link>
                 <Link to="/Ateliers" onClick={toggleMenu}>Ateliers</Link>
                 <Link to="/biographie" onClick={toggleMenu}>Biographie</Link>

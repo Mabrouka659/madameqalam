@@ -17,25 +17,17 @@ class ArtworkRepository {
 		// requéte SQL
 		// SELECT role.* FROM madameqalam_dev.school;
 		const sql = `
-       SELECT 
+        SELECT 
         ${this.table}.*,
-		GROUP_CONCAT(orders.id) AS orders_ids
-       FROM 
+		GROUP_CONCAT(category.id) AS category_id
+        FROM 
         ${process.env.MYSQL_DATABASE}.${this.table}
-
-			LEFT JOIN
-		${process.env.MYSQL_DATABASE}.orders
+		LEFT JOIN
+		${process.env.MYSQL_DATABASE}.category
 		ON
-		orders.artwork_id =${this.table}.id
-			 LEFT JOIN
-		${process.env.MYSQL_DATABASE}.user
-		ON
-		orders.user_id = user.id
-		GROUP BY 
-		${this.table}.id
-
-		
-        ;
+		category.id =${this.table}.category_id
+		GROUP BY
+			${this.table}.id
         ;
     `;
 		// exécuter la requéte
@@ -57,14 +49,13 @@ class ArtworkRepository {
 					id: result.category_id,
 				})) as Category;
 			}
-            
+
 			// si la réquete a échouée
 			return results;
 		} catch (error) {
 			return error;
 		}
 	};
-	
 
 	public selectOne = async (
 		data: Partial<Artwork>,
@@ -74,15 +65,25 @@ class ArtworkRepository {
 
 		// requéte SQL
 		// SELECT role.* FROM madameqalam_dev.artwork WHERE id = 1;
+
 		const sql = `
-       SELECT
-        ${this.table}.*
-       FROM 
+        SELECT 
+        ${this.table}.*,
+		GROUP_CONCAT(category.id) AS category_id
+        FROM 
         ${process.env.MYSQL_DATABASE}.${this.table}
+		LEFT JOIN
+		${process.env.MYSQL_DATABASE}.category
+		ON
+		category.id =${this.table}.category_id
 		WHERE
 			${this.table}.id = :id
+		GROUP BY
+			${this.table}.id
         ;
     `;
+
+
 		// exécuter la requéte
 		//try / catch : permet d'éxecuter une instruction . si l'instruction échoue , une erreur
 		// est récupérée
@@ -104,13 +105,13 @@ class ArtworkRepository {
 		}
 	};
 
-
-	// créér un enregistrement 
+	// créér un enregistrement
 	public insert = async (
 		data: Partial<Artwork>,
 	): Promise<Artwork | unknown> => {
 		// connexion au serveur MYSQL
 		const connection = await new MySQLService().connect();
+		console.log(data);
 
 		// requéte SQL
 		// SELECT role.* FROM madameqalam_dev.artwork WHERE id = 1;
@@ -121,8 +122,8 @@ class ArtworkRepository {
 				(
 					NULL,
 					:name,
-					:price,
 					:description,
+					:price,
 					:category_id
 				)
         ;
@@ -131,31 +132,27 @@ class ArtworkRepository {
 		//try / catch : permet d'éxecuter une instruction . si l'instruction échoue , une erreur
 		// est récupérée
 		try {
-			
-			// exécute la premiére requéte 
+			// exécute la premiére requéte
 			await connection.execute(sql, data);
 			// deuxième requète SQL de la transaction
-			
 
-
-
-
-			// resultat represent le premiere 
+			// resultat represent le premiere
 			// récupérer les résultats de la requéte
 			const [results] = await connection.execute(sql, data);
-// valider la transaction l'orsque l'ensemble des requétes d'une transation ont réussi 
+			// valider la transaction l'orsque l'ensemble des requétes d'une transation ont réussi
 			connection.commit();
 			// si la requète a réussi
 			return results;
 		} catch (error) {
-			// annuler l'ensemble des réquetes de la transation si l'une des requétes d'une transaction ont réussi 
+			// annuler l'ensemble des réquetes de la transation si l'une des requétes d'une transaction ont réussi
 			connection.rollback();
 			//si la requéte a échoué
 			return error;
 		}
 	};
-//  modifier un enregistrement 
-	public update= async (
+
+	//  modifier un enregistrement
+	public update = async (
 		data: Partial<Artwork>,
 	): Promise<Artwork | unknown> => {
 		// connexion au serveur MYSQL
@@ -185,7 +182,6 @@ class ArtworkRepository {
 			// récupérer les résultats de la requéte
 			const [results] = await connection.execute(sql, data);
 
-			
 			// si la requète a réussi
 			return results;
 		} catch (error) {
@@ -194,7 +190,7 @@ class ArtworkRepository {
 	};
 
 	// supprimer un enregistrement
-	public delete= async (
+	public delete = async (
 		data: Partial<Artwork>,
 	): Promise<Artwork | unknown> => {
 		// connexion au serveur MYSQL
@@ -217,23 +213,18 @@ class ArtworkRepository {
 			// récupérer les résultats de la requéte
 			const [results] = await connection.execute(sql, data);
 
-			
 			// si la requète a réussi
 			return results;
 		} catch (error) {
 			return error;
 		}
 	};
-
 }
 
 export default ArtworkRepository;
 
-
-
-
 // - TRansaction sql
-// -- aller dans try 
+// -- aller dans try
 // -- creer un TRansaction
 
 // -- connection.beginTransaction();
@@ -242,7 +233,7 @@ export default ArtworkRepository;
 
 // -- awit connection.execute(sql,data);
 
-// -- executer la deuxiéme requetes  apres on change  le const a let 
+// -- executer la deuxiéme requetes  apres on change  le const a let
 
 // -- sql = INSERT INTO
 // -- ${process.env.MYSQL_DATABASE}.nom_de table
@@ -256,7 +247,7 @@ export default ArtworkRepository;
 
 // -- en bas de const result
 
-// -- on ecrit 
+// -- on ecrit
 // -- valider la transation lorsque l'ensemble de requetes ont reusi
 
 // -- connection.commit();
@@ -265,11 +256,11 @@ export default ArtworkRepository;
 // -- annuler l'ensmble des requetes de la transation si l'une des requetes a ecchoué
 
 // -- connection.rollback();
-// 
+//
 // pour créer une variable SQL stockant le derienier identifiant créé
 
 // sql = '
 
-// 
-// 
-// 
+//
+//
+//
