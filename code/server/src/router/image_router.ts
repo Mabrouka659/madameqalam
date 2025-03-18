@@ -1,7 +1,7 @@
 import express, { type Request, type Response } from "express";
 import ImageController from "../controller/image_controller.js";
 import multer from "multer";
-import ImagefileMiddleware from "../middleware/image_file_middleware.js";
+import ImagefileMiddleware from "../repository/user_repository.js";
 class ImageRouter {
 	//propriétés
 	private router = express.Router();
@@ -12,7 +12,7 @@ class ImageRouter {
 		// créér une variable de route en la préfixant d'un :
 		this.router.get("/:id", new ImageController().one);
 
-		this.router.post("/",  new ImageController().insert);
+		this.router.post("/", new ImageController().insert);
 		this.router.put("/", new ImageController().update);
 		this.router.delete("/", new ImageController().delete);
 

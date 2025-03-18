@@ -1,7 +1,9 @@
 import type Artwork from "../model/artwork.js";
 import type Category from "../model/category.js";
+import type Image from "../model/image.js";
 import MySQLService from "../service/mysql_service.js";
 import CategoryRepository from "./category_repository.js";
+import ImageRepository from "./image_repository.js";
 
 class ArtworkRepository {
 	// nom de la table SQL
@@ -19,13 +21,13 @@ class ArtworkRepository {
 		const sql = `
         SELECT 
         ${this.table}.*,
-		GROUP_CONCAT(category.id) AS category_id
+		GROUP_CONCAT(image.id) AS image_id
         FROM 
         ${process.env.MYSQL_DATABASE}.${this.table}
 		LEFT JOIN
-		${process.env.MYSQL_DATABASE}.category
+		${process.env.MYSQL_DATABASE}.image
 		ON
-		category.id =${this.table}.category_id
+		image.artwork_id =${this.table}.id
 		GROUP BY
 			${this.table}.id
         ;
@@ -44,10 +46,15 @@ class ArtworkRepository {
 				//console.log (result);
 
 				//composition permet d'associer la propriete d'un object à un autre objet
-
 				result.category = (await new CategoryRepository().selectOne({
 					id: result.category_id,
 				})) as Category;
+
+				result.image = (await new ImageRepository().selectInList(
+					result.image_id,
+				)) as Image[];
+
+				// console.log(result.image);
 			}
 
 			// si la réquete a échouée
@@ -66,23 +73,23 @@ class ArtworkRepository {
 		// requéte SQL
 		// SELECT role.* FROM madameqalam_dev.artwork WHERE id = 1;
 
+
 		const sql = `
         SELECT 
         ${this.table}.*,
-		GROUP_CONCAT(category.id) AS category_id
+		GROUP_CONCAT(image.id) AS image_id
         FROM 
         ${process.env.MYSQL_DATABASE}.${this.table}
 		LEFT JOIN
-		${process.env.MYSQL_DATABASE}.category
+		${process.env.MYSQL_DATABASE}.image
 		ON
-		category.id =${this.table}.category_id
+		image.artwork_id =${this.table}.id
 		WHERE
 			${this.table}.id = :id
 		GROUP BY
 			${this.table}.id
         ;
     `;
-
 
 		// exécuter la requéte
 		//try / catch : permet d'éxecuter une instruction . si l'instruction échoue , une erreur
@@ -98,6 +105,12 @@ class ArtworkRepository {
 			result.category = (await new CategoryRepository().selectOne({
 				id: result.category_id,
 			})) as Category;
+
+
+			result.image = (await new ImageRepository().selectInList(
+				result.image_id,
+			)) as Image[];
+
 			// si la réquete a échouée
 			return result;
 		} catch (error) {
@@ -111,14 +124,14 @@ class ArtworkRepository {
 	): Promise<Artwork | unknown> => {
 		// connexion au serveur MYSQL
 		const connection = await new MySQLService().connect();
-		console.log(data);
+		// console.log(data);
 
 		// requéte SQL
 		// SELECT role.* FROM madameqalam_dev.artwork WHERE id = 1;
-		const sql = `
+		let sql = `
 				INSERT INTO
 				${process.env.MYSQL_DATABASE}.${this.table}
-				VALUE 
+				VALUE
 				(
 					NULL,
 					:name,
@@ -135,17 +148,34 @@ class ArtworkRepository {
 			// exécute la premiére requéte
 			await connection.execute(sql, data);
 			// deuxième requète SQL de la transaction
+			sql = `
+			SET @id = LAST_INSERT_ID();
+			
+			`;
+			await connection.execute(sql, data);
+			const values = data.image
+				?.map((item) => `(NULL, '${item}', @id)`)
+				.join(",");
+
+			sql = `
+			INSERT INTO
+				${process.env.MYSQL_DATABASE}.image
+			VALUES
+				${values}				
+			
+			
+			`;
 
 			// resultat represent le premiere
 			// récupérer les résultats de la requéte
 			const [results] = await connection.execute(sql, data);
 			// valider la transaction l'orsque l'ensemble des requétes d'une transation ont réussi
-			connection.commit();
+
 			// si la requète a réussi
 			return results;
 		} catch (error) {
 			// annuler l'ensemble des réquetes de la transation si l'une des requétes d'une transaction ont réussi
-			connection.rollback();
+
 			//si la requéte a échoué
 			return error;
 		}
@@ -160,12 +190,10 @@ class ArtworkRepository {
 
 		// requéte SQL
 		// SELECT role.* FROM madameqalam_dev.artwork WHERE id = 1;
-		const sql = `
+		let sql = `
 				UPDATE
 				${process.env.MYSQL_DATABASE}.${this.table}
-				SEt
-				
-					
+				SET
 				    ${this.table}.name = :name,
 					${this.table}.price = :price,
 					${this.table}.description =:description,
@@ -179,6 +207,27 @@ class ArtworkRepository {
 		//try / catch : permet d'éxecuter une instruction . si l'instruction échoue , une erreur
 		// est récupérée
 		try {
+			await connection.execute(sql, data);
+
+			sql = `
+			DELETE FROM
+				${process.env.MYSQL_DATABASE}.image
+			WHERE 
+				image.artwork_id = :id
+				;
+			`;
+
+			await connection.execute(sql, data);
+			const values = data.image
+				?.map((item) => `(NULL, '${item}', :id)`)
+				.join(",");
+			sql = `
+			INSERT INTO
+				${process.env.MYSQL_DATABASE}.image
+			VALUES
+				${values} 
+				 `;
+
 			// récupérer les résultats de la requéte
 			const [results] = await connection.execute(sql, data);
 
@@ -198,11 +247,11 @@ class ArtworkRepository {
 
 		// requéte SQL
 		// SELECT role.* FROM madameqalam_dev.artwork WHERE id = 1;
-		const sql = `
+		let sql = `
 				DELETE FROM
-				${process.env.MYSQL_DATABASE}.${this.table}
+				${process.env.MYSQL_DATABASE}.image
 				WHERE	
-				${this.table}.id = :id
+				image.artwork_id = :id
 				
         ;
     `;
@@ -210,6 +259,16 @@ class ArtworkRepository {
 		//try / catch : permet d'éxecuter une instruction . si l'instruction échoue , une erreur
 		// est récupérée
 		try {
+			await connection.execute(sql, data);
+
+			 sql = `
+					DELETE FROM
+					${process.env.MYSQL_DATABASE}.${this.table}
+					WHERE	
+					${this.table}.id = :id
+				;
+			`;
+
 			// récupérer les résultats de la requéte
 			const [results] = await connection.execute(sql, data);
 

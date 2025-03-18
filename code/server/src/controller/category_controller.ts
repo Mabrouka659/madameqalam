@@ -5,7 +5,7 @@ class CategoryController {
 	public index = async (req: Request, res: Response) => {
 		// récuperer tous les enregistrements
 		const results = await new CategoryRepository().selectAll();
-		console.log(results);
+		// console.log(results);
 
 		// si la requête SQL renvoie une erreur
 		if (results instanceof Error) {
@@ -29,7 +29,7 @@ class CategoryController {
 	public one = async (req: Request, res: Response) => {
 		// récuperer tous les enregistrements
 		const results = await new CategoryRepository().selectOne(req.params);
-		console.log(results);
+		// console.log(results);
 
 		// si la requête SQL renvoie une erreur
 		if (results instanceof Error) {

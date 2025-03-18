@@ -8,11 +8,11 @@ class ContactRepository {
 	public selectAll = () => {
 		//connexion au serveur MongoDB
 		const connection = new MongoDBSevice().connect();
-		console.log(connection);
+		// console.log(connection);
 
 		//sélection la collection
 		const collection = connection.collection(this.collection);
-		console.log(collection);
+		// console.log(collection);
 		// récuperer les documents
 		return collection.find().toArray();
 	};

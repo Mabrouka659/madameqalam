@@ -50,12 +50,19 @@ const ContactPage = () => {
     return (
 
         
-        <section className={styles["contact"]}>
-            <div className={styles["contactImage"]}>
-                
-</div>
+        
+                <section className={styles["contact"]}>
+            {/* Ajout de l'image */}
+            <h1>Contactez Madame Qalam</h1>
+    <div className={styles["contactImage"]}>
+        <img src={profileImage} alt="Profil Madame Qalam" className={styles["profile-img"]} />
+    </div>
 
-            <h1>Contactez  Madame Qalam</h1>
+    
+    
+   <p>  Écrivez-moi grâce à ce formulaire ou directement à l'adresse madameqalam@gmail.com   </p>
+
+
             <form onSubmit={handleSubmit} className={styles["contact-form"]}>
                 
                 {/* Champ Nom et Prénom */}

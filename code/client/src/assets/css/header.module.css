@@ -3,6 +3,12 @@ utiliser en priorité des classes CSS
  */
 
  .menu-btn{display: none;}
+ header{
+  border: 1px solid red;
+  display: flex;
+  justify-content: space-between;/**logo à gauche et la nav centre /
+  padding:10px 20px;
+ }
 
  .site-header{
     
@@ -34,8 +40,9 @@ utiliser en priorité des classes CSS
   height: 80px;
 }
 .logo {
-  max-width: 260px;
+  max-width: 1400px;
   height: auto;
+  flex: 1;
 }
 
 .logo-container {

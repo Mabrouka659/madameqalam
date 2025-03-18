@@ -7,7 +7,7 @@ class artworkRouter {
 	//propriétés
 	private router = express.Router();
 
-	private upload = multer({ dest: `${process.env.ASSET_DIR}/img `});
+	private upload = multer({ dest: `${process.env.ASSET_DIR}/img`});
 
 	//méthode
 	public getRoutes = () => {

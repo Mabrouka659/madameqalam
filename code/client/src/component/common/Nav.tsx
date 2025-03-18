@@ -14,6 +14,9 @@ const Nav = () => {
 
     return (
         <>
+            {/* ajouter des évenement 
+            utlisateur
+            */}
             {/* Bouton menu burger (visible en mobile) */}
             <button className={styles["btn-nav-mobile"]} type="button" onClick={toggleMenu}>
                 ☰
@@ -26,6 +29,7 @@ const Nav = () => {
                 <Link to="/Ateliers" onClick={toggleMenu}>Ateliers</Link>
                 <Link to="/biographie" onClick={toggleMenu}>Biographie</Link>
                 <Link to="/Contact" onClick={toggleMenu}>Contact</Link>
+                <Link to={"/admin"}>Administration</Link>
             </nav>
         </>
     );

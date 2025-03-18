@@ -5,7 +5,7 @@ class ArtworkController {
 	public index = async (req: Request, res: Response) => {
 		// récuperer tous les enregistrements
 		const results = await new ArtworkRepository().selectAll();
-		console.log(results);
+		// console.log(results);
 
 		// si la requête SQL renvoie une erreur
 		if (results instanceof Error) {
@@ -29,7 +29,7 @@ class ArtworkController {
 	public one = async (req: Request, res: Response) => {
 		// récuperer tous les enregistrements
 		const results = await new ArtworkRepository().selectOne(req.params);
-		console.log(results);
+		// console.log(results);
 
 		// si la requête SQL renvoie une erreur
 		if (results instanceof Error) {
@@ -54,7 +54,7 @@ class ArtworkController {
 		// créer un  enregistrements
 		//req.body  permet de récuperer le contenu la réquete HTTP
 		const results = await new ArtworkRepository().insert(req.body);
-		console.log(results);
+		// console.log(results);
 
 		// si la requête SQL renvoie une erreur
 		if (results instanceof Error) {
@@ -79,7 +79,7 @@ class ArtworkController {
 		// modifier un enregistrement 
 		//req.body permet de récuperer le contenu de la requéte HTTP
 		const results = await new ArtworkRepository().update(req.body);
-		console.log(results);
+		// console.log(results);
 
 		// si la requête SQL renvoie une erreur
 		if (results instanceof Error) {
@@ -104,7 +104,7 @@ class ArtworkController {
 		// supprimer un enregistrement 
 		//req.body permet de récuperer le contenu de la requéte HTTP
 		const results = await new ArtworkRepository().delete(req.body);
-		console.log(results);
+		// console.log(results);
 
 		// si la requête SQL renvoie une erreur
 		if (results instanceof Error) {

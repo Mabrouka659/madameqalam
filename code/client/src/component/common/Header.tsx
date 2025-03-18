@@ -24,7 +24,7 @@ const Header = () => {
 			{/*Bouton menu burgur*/}
 			<button className={styles["menu-btn"]} onClick={toggleMenu}> ☰</button>
 			{/* Navigation */}
-			<Nav menuOpen={menuOpen} toggleMenu={toggleMenu} />
+			<Nav menuOpen = {menuOpen} toggleMenu={toggleMenu} />
 
 
 

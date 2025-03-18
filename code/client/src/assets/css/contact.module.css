@@ -11,6 +11,20 @@
     padding: 150px  ; /* 🔹 Ajoute un espace en haut pour éviter que le header cache le contenu */
 }
 
+.contactImage {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 20px;
+}
+
+.profile-img {
+    width: 150px; /* Ajuste la taille selon ton design */
+    height: 150px;
+    border-radius: 50%; /* Rend l'image ronde */
+    object-fit: cover;
+    border: 3px solid #BF4C41; /* Ajoute un contour */
+}
+
   .contact {
     max-width: 600px;
     margin: auto;
@@ -72,5 +86,12 @@ textarea {
 @media (max-width: 768px) {
     .contact {
         width: 90%;
+    }
+}
+
+@media (max-width: 768px) {
+    .profile-img {
+        width: 120px;
+        height: 120px;
     }
 }

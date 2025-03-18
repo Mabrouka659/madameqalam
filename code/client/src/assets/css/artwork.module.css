@@ -15,15 +15,17 @@
 }
 
 .art-image {
-  flex: 1; /* 🔹 L’image prend aussi 50% de la largeur */
+  flex: 2; /* 🔹 L’image prend aussi 50% de la largeur */
   display: flex;
+
   justify-content: flex-end; /* 🔹 Aligner l’image à droite */
 }
 
 .art-image img {
-  max-width: 100%; /* 🔹 L’image s’adapte bien */
+  max-width: 120%; /* 🔹 L’image s’adapte bien */
+  width: 5OOpx;
   height: auto;
-  border-radius: 20px;
+  border-radius: 3px;
 }
 @media (max-width: 768px) {
   .art-container {
@@ -39,7 +41,17 @@
   .art-image {
       justify-content: center; /* 🔹 Centre l’image */
       margin-bottom: 20px; /* 🔹 Ajoute un espace entre l’image et le texte */
+    
   }
+
+  @media (max-width: 768px) {
+    .art-image img {
+        max-width: 100%;
+        width: 90%;
+    }
+  }
+  
+
 
   .art-text {
       max-width: 600px;

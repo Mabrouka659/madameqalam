@@ -5,7 +5,7 @@ class WorkshopController {
 	public index = async (req: Request, res: Response) => {
 		// récuperer tous les enregistrements
 		const results = await new WorkshopRepository().selectAll();
-		console.log(results);
+		// console.log(results);
 
 		// si la requête SQL renvoie une erreur
 		if (results instanceof Error) {
@@ -29,7 +29,7 @@ class WorkshopController {
 	public one = async (req: Request, res: Response) => {
 		// récuperer tous les enregistrements
 		const results = await new WorkshopRepository().selectOne(req.params);
-		console.log(results);
+		// console.log(results);
 
 		// si la requête SQL renvoie une erreur
 		if (results instanceof Error) {

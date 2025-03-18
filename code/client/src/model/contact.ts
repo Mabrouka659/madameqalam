@@ -1,10 +1,9 @@
 //reprendre STRICTEMENT le nom des colonnes SQL
 type Contact = {
-	// id: number;
-	// name: string;
-	// description: string ;
-	// price: number;
-	// category_id: number;
+	id: number;
+	email: string;
+	description: string ;
+	message: string;
 	//composition permet de d'association la propriété d'un objet à un autre objet
 	
 };

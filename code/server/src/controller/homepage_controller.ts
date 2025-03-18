@@ -5,7 +5,7 @@ class HomepageController {
 	public index = async (req: Request, res: Response) => {
 		// récuperer tous les enregistrements
 		const results = await new RoleRepository().selectAll();
-		console.log(results);
+		// console.log(results);
 
 		// status :code de status HTTP
 		// json : formater une réponse en JSON

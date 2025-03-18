@@ -109,13 +109,19 @@ VaLUES
 
 INSERT INTO madameqalam_dev.image
 VaLUES
-(NULL, 'amour ',2),
-(NULL,'espoir',1 ),
-(NULL,'coeur',2),
-(NULL,'Hind',3),
-(NULL,'la joie',2),
-(NULL,'fleur',2),
-(NULL,'pigeon',2)
+(NULL, 'amour.jpg ',1),
+(NULL,'espoir.jpg',2 ),
+(NULL,'coeur.jpg',2),
+(NULL,'Hind.jpg',3),
+(NULL,'la joie.jpg',3),
+(NULL,'fleur.jpg',3),
+(NULL,'pigeon.jpg',4),
+(NULL, 'amour.jpg ',5),
+(NULL,'espoir.jpg',5 ),
+(NULL,'coeur.jpg',6),
+(NULL,'Hind.jpg',6),
+(NULL,'la joie.jpg',6),
+(NULL,'fleur.jpg',7)
 ;
 
 

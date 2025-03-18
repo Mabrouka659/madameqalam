@@ -5,7 +5,7 @@ class ImageController {
 	public index = async (req: Request, res: Response) => {
 		// récuperer tous les enregistrements
 		const results = await new ImageRepository().selectAll();
-		console.log(results);
+		// console.log(results);
 
 		// si la requête SQL renvoie une erreur
 		if (results instanceof Error) {
@@ -29,7 +29,7 @@ class ImageController {
 	public one = async (req: Request, res: Response) => {
 		// récuperer tous les enregistrements
 		const results = await new ImageRepository().selectOne(req.params);
-		console.log(results);
+		// console.log(results);
 
 		// si la requête SQL renvoie une erreur
 		if (results instanceof Error) {
@@ -54,7 +54,7 @@ class ImageController {
 		// créer un  enregistrements
 		//req.body  permet de récuperer le contenu la réquete HTTP
 		const results = await new ImageRepository().insert(req.body);
-		console.log(results);
+		// console.log(results);
 
 		// si la requête SQL renvoie une erreur
 		if (results instanceof Error) {
@@ -78,7 +78,7 @@ class ImageController {
 		// modifier un enregistrement 
 		//req.body permet de récuperer le contenu de la requéte HTTP
 		const results = await new ImageRepository().update(req.body);
-		console.log(results);
+		// console.log(results);
 
 		// si la requête SQL renvoie une erreur
 		if (results instanceof Error) {
@@ -102,7 +102,7 @@ class ImageController {
 		// supprimer un enregistrement 
 		//req.body permet de récuperer le contenu de la requéte HTTP
 		const results = await new ImageRepository().delete(req.body);
-		console.log(results);
+		// console.log(results);
 
 		// si la requête SQL renvoie une erreur
 		if (results instanceof Error) {

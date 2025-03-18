@@ -47,9 +47,7 @@ class ImageRepository {
 		}
 	};
 
-	public selectOne = async (
-		data: Partial<Image>,
-	): Promise<Image | unknown> => {
+	public selectOne = async (data: Partial<Image>): Promise<Image | unknown> => {
 		// connexion au serveur MYSQL
 		const connection = await new MySQLService().connect();
 
@@ -70,14 +68,13 @@ class ImageRepository {
 		try {
 			// récupérer les résultats de la requéte
 			const [results] = await connection.execute(sql, data);
-            //récuperer le premier résultat
+			//récuperer le premier résultat
 			//shift permet de récupérer le premier indice d'un array
 			const result = (results as Image[]).shift() as Image;
 			//composition permet d'associer la propriété d'un object à un autre objet
-			result.artwork= (await new ArtworkRepository().selectOne({
+			result.artwork = (await new ArtworkRepository().selectOne({
 				id: result.artwork_id,
 			})) as Artwork;
-			
 
 			// si la réquete a échouée
 			return result;
@@ -85,17 +82,52 @@ class ImageRepository {
 			return error;
 		}
 	};
-		// créér un enregistrement 
-		public insert = async (
-			data: Partial<Image>,
-		): Promise<Image | unknown> => {
-			// connexion au serveur MYSQL
-			const connection = await new MySQLService().connect();
-	console.log(data);
-	
-			// requéte SQL
-			// SELECT role.* FROM madameqalam_dev.image WHERE id = 1;
-			const sql = `
+
+	public selectInList = async (data: string): Promise<Image[] | unknown> => {
+		// connexion au serveur MYSQL
+		const connection = await new MySQLService().connect();
+
+		// requéte SQL
+		// SELECT role.* FROM madameqalam_dev.school WHERE id = 1;
+		const sql = `
+       SELECT
+        ${this.table}.*
+       FROM 
+        ${process.env.MYSQL_DATABASE}.${this.table}
+		WHERE
+			${this.table}.id IN (${data})
+		;
+    `;
+		// exécuter la requéte
+		//try / catch : permet d'éxecuter une instruction . si l'instruction échoue , une erreur
+		// est récupérée
+		try {
+			// récupérer les résultats de la requéte
+			const [results] = await connection.execute(sql, data);
+			//récuperer le premier résultat
+			//shift permet de récupérer le premier indice d'un array
+			// const result = (results as Image[]).shift() as Image;
+			// //composition permet d'associer la propriété d'un object à un autre objet
+			// result.artwork = (await new ArtworkRepository().selectOne({
+			// 	id: result.artwork_id,
+			// })) as Artwork;
+
+			// si la réquete a échouée
+			return results;
+		} catch (error) {
+			return error;
+		}
+	};
+
+	// créér un enregistrement
+	public insert = async (data: Partial<Image>): Promise<Image | unknown> => {
+		// connexion au serveur MYSQL
+		const connection = await new MySQLService().connect();
+		// console.log(data);
+
+		// requéte SQL
+		// SELECT role.* FROM madameqalam_dev.image WHERE id = 1;
+		const sql = `
 					INSERT INTO
 					${process.env.MYSQL_DATABASE}.${this.table}
 					VALUE 
@@ -106,37 +138,31 @@ class ImageRepository {
 					)
 			;
 		`;
-			// exécuter la requéte
-			//try / catch : permet d'éxecuter une instruction . si l'instruction échoue , une erreur
-			// est récupérée
-			try {
-				
-				// exécute la premiére requéte 
-				await connection.execute(sql, data);
-				// deuxième requète SQL de la transaction
-				
-	
-	
-	
-	
-				// resultat represent le premiere 
-				// récupérer les résultats de la requéte
-				const [results] = await connection.execute(sql, data);
-	// valider la transaction l'orsque l'ensemble des requétes d'une transation ont réussi 
-				connection.commit();
-				// si la requète a réussi
-				return results;
-			} catch (error) {
-				// annuler l'ensemble des réquetes de la transation si l'une des requétes d'une transaction ont réussi 
-				connection.rollback();
-				//si la requéte a échoué
-				return error;
-			}
-		};
-	//  modifier un enregistrement 
-	public update= async (
-		data: Partial<Image>,
-	): Promise<Image | unknown> => {
+		// exécuter la requéte
+		//try / catch : permet d'éxecuter une instruction . si l'instruction échoue , une erreur
+		// est récupérée
+		try {
+			// exécute la premiére requéte
+			await connection.execute(sql, data);
+			// deuxième requète SQL de la transaction
+
+			// resultat represent le premiere
+			// récupérer les résultats de la requéte
+			const [results] = await connection.execute(sql, data);
+			// valider la transaction l'orsque l'ensemble des requétes d'une transation ont réussi
+			connection.commit();
+			// si la requète a réussi
+			return results;
+		} catch (error) {
+			// annuler l'ensemble des réquetes de la transation si l'une des requétes d'une transaction ont réussi
+			connection.rollback();
+			//si la requéte a échoué
+			return error;
+		}
+	};
+
+	//  modifier un enregistrement
+	public update = async (data: Partial<Image>): Promise<Image | unknown> => {
 		// connexion au serveur MYSQL
 		const connection = await new MySQLService().connect();
 
@@ -162,23 +188,20 @@ class ImageRepository {
 			// récupérer les résultats de la requéte
 			const [results] = await connection.execute(sql, data);
 
-			
 			// si la requète a réussi
 			return results;
 		} catch (error) {
 			return error;
 		}
 	};
-		// supprimer un enregistrement
-		public delete= async (
-			data: Partial<Image>,
-		): Promise<Image | unknown> => {
-			// connexion au serveur MYSQL
-			const connection = await new MySQLService().connect();
-	
-			// requéte SQL
-			// SELECT role.* FROM madameqalam_dev.image WHERE id = 1;
-			const sql = `
+	// supprimer un enregistrement
+	public delete = async (data: Partial<Image>): Promise<Image | unknown> => {
+		// connexion au serveur MYSQL
+		const connection = await new MySQLService().connect();
+
+		// requéte SQL
+		// SELECT role.* FROM madameqalam_dev.image WHERE id = 1;
+		const sql = `
 					DELETE FROM
 					${process.env.MYSQL_DATABASE}.${this.table}
 					WHERE	
@@ -186,21 +209,19 @@ class ImageRepository {
 					
 			;
 		`;
-			// exécuter la requéte
-			//try / catch : permet d'éxecuter une instruction . si l'instruction échoue , une erreur
-			// est récupérée
-			try {
-				// récupérer les résultats de la requéte
-				const [results] = await connection.execute(sql, data);
-	
-				
-				// si la requète a réussi
-				return results;
-			} catch (error) {
-				return error;
-			}
-		};
-	
+		// exécuter la requéte
+		//try / catch : permet d'éxecuter une instruction . si l'instruction échoue , une erreur
+		// est récupérée
+		try {
+			// récupérer les résultats de la requéte
+			const [results] = await connection.execute(sql, data);
+
+			// si la requète a réussi
+			return results;
+		} catch (error) {
+			return error;
+		}
+	};
 }
 
 export default ImageRepository;

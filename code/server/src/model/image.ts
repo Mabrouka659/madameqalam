@@ -1,4 +1,4 @@
-import Artwork from "./artwork.js";
+import type Artwork from "./artwork.js";
 
 type Image = {
 	id: number;
