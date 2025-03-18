@@ -2,6 +2,7 @@ import { useEffect, useState } from "react"
 import ArtworkAPI from "../../../service/artwork_api";
 import Artwork from "../../../model/artwork";
 import { Link } from "react-router-dom";
+import Image from "../../../model/image";
 
 const AdminArtworkList = () => {
     //état pour stocker les données
@@ -30,18 +31,20 @@ const AdminArtworkList = () => {
                     return (
                        
                             <tr key={Math.random()}>
-                              <img src={`${import.meta.env.VITE_API_URL}/imag/${artwork.image}`} />
-                         
+                            
                             <td> {artwork.name}</td>
                             <td>{artwork.description}</td>
                             <td>{artwork.price}</td>
-                            <td>{'artwork.image'}</td>
+                            <td>
+                                {/* <img src={`${import.meta.env.VITE_API_URL}/img/${(artwork.image[0])}`} /> */}
+                                { JSON.stringify((artwork.image[0] as unknown as Image)) }
+                            </td>
                             <td> {artwork.category.name} </td>
                             {/* {new Date (booking.date_time).} */}
                             <td>
 
-                                <Link to={""}>Edit</Link>
-                                <Link to={""}>Delete</Link>
+                                <Link className="btn" to={`/admin/artwork/form/${artwork.id}`}>Edit</Link>
+                                <Link to={`/admin/artwork/delete/${artwork.id}  `}>Delete</Link>
                             </td>
                         </tr>) ;
                 })}

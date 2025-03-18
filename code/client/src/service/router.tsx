@@ -10,6 +10,7 @@ import AdminHomePage from "../page/admin/AdminHomePage";
 // import AdminContactFormPage from "../page/admin/Artwork/AdminArtworkFormPage";
 // import AdminContactPage from "../page/admin/Artwork/AdminArtworkFormPage";
 import AdminArtworkFormPage from "../page/admin/Artwork/AdminArtworkFormPage";
+import  AdminArtworkDeletePage from "../component/admin/artwork/AdminArtworkDeletePage";
 
 const router = createBrowserRouter([
 
@@ -83,12 +84,12 @@ const router = createBrowserRouter([
 
 
 			{
-				path: "artwork/form",
+				path: "artwork/form/:id?",
 				element: <AdminArtworkFormPage />,
 			},
 			{
-				path: "",
-				element: <AdminHomePage />,
+				path: "artwork/delete/:id",
+				element: <AdminArtworkDeletePage />,
 			},
 
 			// {
