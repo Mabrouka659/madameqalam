@@ -1,5 +1,3 @@
-
-
 import styles from "../../assets/css/footer.module.css";
 import { Link } from "react-router-dom";
 
@@ -13,10 +11,12 @@ const Footer = () => {
 					</Link>
 				</div>
 				<p className={styles.footertext}>
-					<Link to="/mentions-legales">Mentions légales</Link> | 
-					<Link to="/politique-confidentialite">Politique de confidentialité</Link> | 
-					<Link to="/cgv">CGV</Link>  
-					© 2025 Madame Qalam - Tous droits réservés.
+					<Link to="/contact">Contact</Link>
+					<Link to="/mentions-legales">Mentions légales</Link> |
+					<Link to="/politique-confidentialite">
+						Politique de confidentialité
+					</Link>{" "}
+					|<Link to="/cgv">CGV</Link>© 2025 Madame Qalam - Tous droits réservés.
 				</p>
 			</div>
 		</footer>
@@ -24,4 +24,3 @@ const Footer = () => {
 };
 
 export default Footer;
-

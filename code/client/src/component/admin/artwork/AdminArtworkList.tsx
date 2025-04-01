@@ -1,8 +1,8 @@
 import { useEffect, useState } from "react"
 import ArtworkAPI from "../../../service/artwork_api";
-import Artwork from "../../../model/artwork";
+import type Artwork from "../../../model/artwork";
 import { Link } from "react-router-dom";
-import Image from "../../../model/image";
+import type Image from "../../../model/image";
 
 const AdminArtworkList = () => {
     //état pour stocker les données
@@ -44,7 +44,7 @@ const AdminArtworkList = () => {
                             <td>
 
                                 <Link className="btn" to={`/admin/artwork/form/${artwork.id}`}>Edit</Link>
-                                <Link to={`/admin/artwork/delete/${artwork.id}  `}>Delete</Link>
+                                <Link to={`/admin/artwork/delete/${artwork.id} `}>Delete</Link>
                             </td>
                         </tr>) ;
                 })}

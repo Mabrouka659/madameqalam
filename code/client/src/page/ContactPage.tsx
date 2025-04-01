@@ -38,12 +38,12 @@ const ContactPage = () => {
         message: ''
     });
 
-    const handleChange = (e) => {
-        setFormData({ ...formData, [e.target.name]: e.target.value });
+    const handleChange = (event: any) => {
+        setFormData({ ...formData, [target.name]: target.value });
     };
 
-    const handleSubmit = (e) => {
-        e.preventDefault();
+    const handleSubmit = () => {
+        preventDefault();
         alert('Message envoyé avec succès !'); // Tu pourras remplacer par un vrai envoi
     };
 
@@ -130,7 +130,7 @@ const ContactPage = () => {
                 <div className={styles["form-group"]}>
                     <label htmlFor="message">Votre message</label>
                     <textarea 
-                        name="message" 
+                        name="votre message" 
                         id="message" 
                     
                         value={formData.message} 

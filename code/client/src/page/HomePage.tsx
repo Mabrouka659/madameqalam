@@ -1,16 +1,19 @@
 import profileImage from '../../public/img/profileImage.jpg'
 import styles from '../assets/css/home.module.css'
+import Notice from '../component/common/Notice';
 const HomePage = () => {
 
 	
 	return (
 
-		<section className={styles["home"] }>
+		// biome-ignore lint/complexity/useLiteralKeys: <explanation>
+<section className={styles["home"] }>
 			<div className={styles["home-container"]}>
 				<div className={styles['home-text']}>
 				
 				<h1>Madame Qalam</h1>
 				
+				<Notice />
 				
 				</div>
 

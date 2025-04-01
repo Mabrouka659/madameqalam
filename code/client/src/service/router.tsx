@@ -5,15 +5,16 @@ import BaseLayout from "../layout/BaseLayout";
 import ArtworkPage from "../page/ArtworkPage";
 import BiographiePage from "../page/BiographiePage";
 import AteliersPage from "../page/AteliersPage";
-import AdminArtworkPage from "../page/admin/Artwork/AdminArtworkPage";
+import AdminArtworkPage from "../page/Artwork/AdminArtworkPage";
 import AdminHomePage from "../page/admin/AdminHomePage";
-// import AdminContactFormPage from "../page/admin/Artwork/AdminArtworkFormPage";
-// import AdminContactPage from "../page/admin/Artwork/AdminArtworkFormPage";
-import AdminArtworkFormPage from "../page/admin/Artwork/AdminArtworkFormPage";
-import  AdminArtworkDeletePage from "../component/admin/artwork/AdminArtworkDeletePage";
+import AdminArtworkFormPage from "../page/Artwork/AdminArtworkFormPage";
+import AdminArtworkDeletePage from "../page/Artwork/AdminArtworkDeletePage";
+import RegisterPage from "../page/RegisterPage";
+import ConnectionPage from "../page/ConnectionPage";
+import DeconnectionPage from "../page/DeconnectionPage";
+import Guard from "../component/common/Guard";
 
 const router = createBrowserRouter([
-
 	{
 		// préfixe de toutes les URL enfants
 		path: "/",
@@ -23,7 +24,6 @@ const router = createBrowserRouter([
 		//référence les pages utilisant la mise en page
 
 		children: [
-
 			{
 				path: "",
 				element: <HomePage />,
@@ -33,7 +33,6 @@ const router = createBrowserRouter([
 				path: "contact",
 				element: <ContactPage />,
 			},
-
 
 			{
 				path: "oeuvres",
@@ -49,29 +48,31 @@ const router = createBrowserRouter([
 				path: "ateliers",
 				element: <AteliersPage />,
 			},
-
-
-
-
-
-
-
-
-
-
-
+			{
+				path: "connection",
+				element: <ConnectionPage />,
+			},
+			{
+				path: "deconnection",
+				element: <DeconnectionPage />,
+			},
+			{
+				path: "register",
+				element: <RegisterPage />,
+			},
 		],
 	},
 	{
 		// préfixe de toutes les URL enfants
 		path: "/admin/",
 		//utilisation d'une mise en page
-		element: <BaseLayout />,
+		element:(<Guard roles={['admin']}> 
+			<BaseLayout />
+		</Guard>),
 
 		//référence les pages utilisant la mise en page
 
 		children: [
-
 			{
 				path: "",
 				element: <AdminHomePage />,
@@ -82,7 +83,6 @@ const router = createBrowserRouter([
 				element: <AdminArtworkPage />,
 			},
 
-
 			{
 				path: "artwork/form/:id?",
 				element: <AdminArtworkFormPage />,
@@ -92,17 +92,17 @@ const router = createBrowserRouter([
 				element: <AdminArtworkDeletePage />,
 			},
 
+		
+
 			// {
 			// 	path: "contact",
 			// 	element: <AdminContactPage />,
 			// },
 
-
 			// {
 			// 	path: "contact/form",
 			// 	element: <AdminContactFormPage />,
 			// },
-
 
 			// {
 			// 	path: "biographie",
@@ -113,17 +113,6 @@ const router = createBrowserRouter([
 			// 	path: "ateliers",
 			// 	element: <AteliersPage />,
 			// },
-
-
-
-
-
-
-
-
-
-
-
 		],
 	},
 ]);

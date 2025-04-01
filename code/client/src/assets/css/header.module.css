@@ -3,32 +3,27 @@ utiliser en priorité des classes CSS
  */
 
  .menu-btn{display: none;}
- header{
-  border: 1px solid red;
-  display: flex;
-  justify-content: space-between;/**logo à gauche et la nav centre /
-  padding:10px 20px;
- }
 
  .site-header{
-    
-    
+  border: 1px solid red;
+  justify-content: space-between;
+  /**logo à gauche et la nav centre /
+  padding:10px 20px;
+ } */
     display: flex;
-    
     justify-content: space-between; /* Sépare le logo et le menu */
- 
   align-items: center;
      padding: 10px 30px;
-     
-      height: 80px;
+    height: 80px;
     background: linear-gradient(to right, #FFFFFF, #fad7c4); /* Dégradé pour un effet doux */
-   
-    position: fixed; /* Garde le header en haut de l'écran */
+    overflow: visible; /* autorise le dropdown *
+    /* Garde le header en haut de l'écran */
+    position: fixed;
     top: 0;
     left: 0;
     width: 100%;
     z-index: 1000;
-    overflow: hidden;/* Pour Évite le débordement */
+   
  }
  .main-container{
   padding-top:120px ;

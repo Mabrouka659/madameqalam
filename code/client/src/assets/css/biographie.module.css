@@ -1,66 +1,95 @@
-.biographie {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  padding: 50px 0;
+@font-face {
+  font-family: 'Antonellie';
+  src: url('../../public/font/Antonellie Calligraphy Demo.ttf') format('truetype');
+}
+
+.Biographie {
+  background: linear-gradient(to bottom, #FAD7C4, #E3D6F2, #FFFFFF);
   min-height: 100vh;
- 
+  padding: 100px 5% 60px;
+  font-family: 'Anek Bangla', sans-serif;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.Biographie h1 {
+  font-size: 3rem;
+  margin-bottom: 60px;
+  font-family: 'Antonellie', cursive;
+  color: #7E83E7;
 }
 
 .bio-container {
   display: flex;
-  align-items: center;
   justify-content: space-between;
-  max-width: 1000px;
-  width: 90%;
-  gap: 30px;
-  margin-bottom: 100px;
-  min-height: 80vh;
+  align-items: flex-start;
+  flex-wrap: wrap;
+  max-width: 1200px;
+  width: 100%;
+  gap: 60px;
 }
 
+/* Texte */
 .bio-text {
   flex: 1;
   text-align: left;
+  max-width: 550px;
+  font-size: 16px;
+  color: #2c2c2c;
 }
 
-.bio-text h2 {
-  font-size: 28px;
-  margin-bottom: 15px;
+.bio-text h2,
+.bio-text h3,
+.bio-text h4,
+.bio-text h5 {
+  margin-top: 20px;
+  margin-bottom: 10px;
+  font-size: 1.1rem;
+  color: #000;
+  font-weight: bold;
 }
 
 .bio-text p {
-  font-size: 18px;
-  line-height: 1.5;
+  margin-bottom: 16px;
+  line-height: 1.7;
+  font-size: 0.95rem;
+  color: #333;
 }
 
+/* Bouton */
 .bio-text button {
-  margin-top: 15px;
-  padding: 10px 20px;
+  margin-top: 20px;
+  padding: 10px 24px;
   background-color: #BF4C41;
   color: white;
   border: none;
-  cursor: pointer;
+  border-radius: 30px;
   font-size: 16px;
-  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
 }
 
 .bio-text button:hover {
   background-color: #a04038;
 }
 
+/* Image capsule */
 .bio-image {
   flex: 1;
   display: flex;
-  justify-content: flex-end;
-  
+  justify-content: center;
+  align-items: center;
+  max-width: 400px;
 }
 
 .bio-image img {
-  max-width: 100%;
-  
+  width: 100%;
   height: auto;
-  border-radius: 250px;
+  border-radius: 200px;
+  object-fit: cover;
 }
+
 
 /* Adaptation pour mobile */
 @media (max-width: 768px) {

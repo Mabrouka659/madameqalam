@@ -2,6 +2,7 @@ import express, { type Request, type Response } from "express";
 import artworkController from "../controller/artwork_controller.js";
 import multer from "multer";
 import ArtworkfileMiddleware from "../middleware/artwork_file_middleware.js";
+import AuthorizationMiddleware from "../middleware/authorization_middleware.js";
 
 class artworkRouter {
 	//propriétés
@@ -15,7 +16,10 @@ class artworkRouter {
 		// créér une variable de route en la préfixant d'un :
 		this.router.get("/:id", new artworkController().one);
 
-		this.router.post("/", this.upload.any(), new ArtworkfileMiddleware().process, new artworkController().insert);
+		this.router.post("/",
+			new AuthorizationMiddleware().check(["user"]),
+			this.upload.any(), new ArtworkfileMiddleware().process,
+			new artworkController().insert);
 
 		this.router.put("/", this.upload.any(), new ArtworkfileMiddleware().process, new artworkController().update);
 		

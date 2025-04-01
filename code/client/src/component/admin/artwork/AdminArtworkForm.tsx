@@ -1,10 +1,10 @@
 import { useForm } from "react-hook-form";
-import Artwork from "../../../model/artwork";
 import ArtworkAPI from "../../../service/artwork_api";
 import { useEffect, useState } from "react";
-import Category from "../../../model/category";
 import CategorysAPI from "../../../service/category_api";
 import { useNavigate, useParams } from "react-router-dom";
+import type Category from "../../../model/category";
+import type Artwork from "../../../model/artwork";
 
   /*
     handleSubmit permet de gérer la soumission du formulaire 
@@ -27,7 +27,8 @@ const AdminArtworkForm = () => {
     const{ id } = useParams();
     // console.log(id);
    
-    useEffect(() => {
+    // biome-ignore lint/correctness/useExhaustiveDependencies: <explanation>
+           useEffect(() => {
         // exécuter en chaine des promesses
         Promise.allSettled([
             new CategorysAPI().selectAll(),

@@ -16,6 +16,7 @@ import ImageRouter from "../router/image_router.js";
 import artworkRouter from "../router/artwork_router.js";
 import ContactRouter from "../router/contact_router.js";
 import WorkshopRouter from "../router/workshop_router.js";
+import SecurityRouter from "../router/security_router.js";
 class Server {
 	//propriétés
 	private app: Express = express();
@@ -52,7 +53,7 @@ class Server {
 		this.router.use("/image", new ImageRouter().getRoutes());
 		this.router.use("/artwork", new artworkRouter().getRoutes());
 		this.router.use("/contact", new ContactRouter().getRoutes());
-
+		this.router.use("/", new SecurityRouter().getRoutes());
 
 		// route des routes inexistantes doit étre obligatoirement en derniere position
 		this.router.use("*", new NotFoundRouter().getRoutes());

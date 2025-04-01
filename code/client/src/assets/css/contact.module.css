@@ -7,9 +7,7 @@
    
   } */
 
-  body {
-    padding: 150px  ; /* 🔹 Ajoute un espace en haut pour éviter que le header cache le contenu */
-}
+ 
 
 .contactImage {
     display: flex;
@@ -26,10 +24,9 @@
 }
 
   .contact {
-    max-width: 600px;
+    /* max-width: 600px; */
     margin: auto;
     padding:   100px ;
-    background: #fff;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
     border-radius: 10px;
     margin-bottom: 100px; 
@@ -85,7 +82,8 @@ textarea {
 /* Responsive */
 @media (max-width: 768px) {
     .contact {
-        width: 90%;
+        width: 100%;
+        margin-top: 28px;
     }
 }
 

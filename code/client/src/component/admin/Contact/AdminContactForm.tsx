@@ -1,5 +1,5 @@
 import { useForm } from "react-hook-form";
-import Contact from "../../../model/contact";
+import type Contact from "../../../model/contact";
 
 
 export const AdminContactForm = () => {

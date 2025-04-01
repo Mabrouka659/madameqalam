@@ -2,8 +2,8 @@ import type { Request, Response, NextFunction } from "express";
 import type Role from "../model/role.js";
 import type User from "../model/user.js";
 import MySQLService from "../service/mysql_service.js";
-
 import RoleRepository from "./role_repository.js";
+
 
 class UserRepository {
 	// nom de la table SQL
@@ -32,15 +32,16 @@ class UserRepository {
 			// récupérer les résultats de la requéte
 			const [results] = await connection.execute(sql);
 			//boucle sur les resultats
+			// biome-ignore lint/correctness/noUnreachable: <explanation>
 			for (let i = 0; i < (results as User[]).length; i++) {
-				const item:User = (results as User[])[i];
+				const item: User = (results as User[])[i];
 				//console.log (result);
 
 				//composition permet d'associer la propriete d'un object à un autre objet
 
-				item.role = await new RoleRepository().selectOne({
-					id:item.role_id,
-				}) as Role;
+				item.role = (await new RoleRepository().selectOne({
+					id: item.role_id,
+				})) as Role;
 
 				// si la réquete a échouée
 				return results;
@@ -74,7 +75,7 @@ class UserRepository {
 
 			//récuperer le premier résultat
 			//shift permet de récupérer le premier indice d'un array
-			const result = (results as User[]).shift() as User;
+			let result = (results as User[]).shift() as User;
 			//composition permet d'associer la propriété d'un object à un autre objet
 			result.role = (await new RoleRepository().selectOne({
 				id: result?.role_id,
@@ -85,117 +86,158 @@ class UserRepository {
 		} catch (error) {
 			return error;
 		}
+
+
+
+
+
 	};
-	public insert = async (
-		data: Partial<User>,
-	): Promise<User | unknown> => {
+
+
+
+
+
+	//sélectionner un utilisateur par son email
+	public selectOneByEmail = async (email: string): Promise<User | unknown> => {
 		// connexion au serveur MYSQL
 		const connection = await new MySQLService().connect();
 
 		// requéte SQL
-		// SELECT role.* FROM madameqalam_dev.booking;
-		let sql = `
-       INSERT INTO
-       ${process.env.MYSQL_DATABASE}.${this.table}
-      VALUES 
-        (
-	                NULL,
-					:firstnam,
-					:lastname,
-					:phone,
-					:email,
-					:role_id
-		
-		
-		)
-        ;
-    `;
+		// SELECT role.* FROM madameqalam_dev.school WHERE id = 1;
+		const sql = `
+   SELECT
+	${this.table}.*
+   FROM 
+	${process.env.MYSQL_DATABASE}.${this.table}
+	WHERE
+		${this.table}.email = :email
+	;
+`;
 		// exécuter la requéte
-		// try / catch : permet d'éxecuter une instruction . si l'instruction échoue , une erreur
+		//try / catch : permet d'éxecuter une instruction . si l'instruction échoue , une erreur
 		// est récupérée
 		try {
-			//creer une transaction SQL
-			connection.beginTransaction();
-			/*executer la prémier requête */
-			await connection.execute(sql, data);
-			//    créer une variables sql stickant le dernier identifiant crée
-			sql = ` 
+			// récupérer les résultats de la requéte
+			const [results] = await connection.execute(sql, {
+				email: email,
+			});
 
-		 SET @id = LAST_INSERT_ID();
+			//récuperer le premier résultat
+			//shift permet de récupérer le premier indice d'un array
+			const result = (results as User[]).shift() as User;
 
-		 `;
-			// exécuter la requête
-			await connection.execute(sql, data);
-			//récupération de la requéte
-			//results representes le premiere indices du array renvoyé
-			//requetes preparees avec des variable des requetes SQL permets d'eviter les injection SQL
-
-			// data permets de definir une valeur aux variables des requetes SQL
-
-			const [results] = await connection.execute(sql, data);
-			// valider la transaction lorsque l'ensemble des requêtes d'une transaction ont réussi
-			connection.commit();
-
-			// si la réquete a réussi
-			return results;
+			// si la réquete a échouée
+			return result;
 		} catch (error) {
-			// annuler l'ensemble des requêtes de la transaction si l'une des requêtes a échoué
-			connection.rollback();
-			//   si la requête a échoué
 			return error;
 		}
 	};
-	public update = async (
-		data: Partial<User>,
-	): Promise<User[] | unknown> => { 
-		const connection = await new MySQLService().connect();
-		const sql= `
-		UPDATE 
-		${process.env.MYSQL_DATABASE}.${this.table}
-        SET
-		${this.table}. firstname = :firstname,
-		${this.table}.  lastname= :lastname,
-		${this.table}.  phone= :phone,
-		${this.table}.  email= :email,
-		${this.table}.  role_id= :role_id,
-		WHERE
-		${this.table}.user_id = :user_id;
-`;
 
 
-try {
-const[results]=await connection.execute(sql,data);
-//si le requête est reussi
-return results;
-}
-catch(error){
-	return error;
-}
-};
-public delete = async (
-	data: Partial<User>,): Promise<User[] | unknown> => 
-		{const connection = await new MySQLService().connect();
-const sql =`
+	// 		data: Partial<User>,
+	// 	): Promise<User | unknown> => {
+	// 		// connexion au serveur MYSQL
+	// 		const connection = await new MySQLService().connect();
 
-DELETE FROM 
+	// 		// requéte SQL
+	// 		// SELECT role.* FROM madameqalam_dev.booking;
+	// 		let sql = `
+	//        INSERT INTO
+	//        ${process.env.MYSQL_DATABASE}.${this.table}
+	//       VALUES
+	//         (
+	// 	                NULL,
+	// 					:firstnam,
+	// 					:lastname,
+	// 					:phone,
+	// 					:email,
+	// 					:role_id
 
-${process.env.MYSQL_DATABASE}.${this.table}
-WHERE 
-${this.table}.user_id =:user_id;
+	// 		)
+	//         ;
+	//     `;
+	// 		// exécuter la requéte
+	// 		// try / catch : permet d'éxecuter une instruction . si l'instruction échoue , une erreur
+	// 		// est récupérée
+	// 		try {
+	// 			//creer une transaction SQL
+	// 			connection.beginTransaction();
+	// 			/*executer la prémier requête */
+	// 			await connection.execute(sql, data);
+	// 			//    créer une variables sql stickant le dernier identifiant crée
+	// 			sql = `
 
-`
-;
-try{
-const[results]=await connection.execute(sql,data);
-//si la requete est echoue
-return results;
-}catch(error){
-	return error;
-}
-	};
+	// 		 SET @id = LAST_INSERT_ID();
 
+	// 		 `;
+	// 			// exécuter la requête
+	// 			await connection.execute(sql, data);
+	// 			//récupération de la requéte
+	// 			//results representes le premiere indices du array renvoyé
+	// 			//requetes preparees avec des variable des requetes SQL permets d'eviter les injection SQL
+
+	// 			// data permets de definir une valeur aux variables des requetes SQL
+
+	// 			const [results] = await connection.execute(sql, data);
+	// 			// valider la transaction lorsque l'ensemble des requêtes d'une transaction ont réussi
+	// 			connection.commit();
+
+	// 			// si la réquete a réussi
+	// 			return results;
+	// 		} catch (error) {
+	// 			// annuler l'ensemble des requêtes de la transaction si l'une des requêtes a échoué
+	// 			connection.rollback();
+	// 			//   si la requête a échoué
+	// 			return error;
+	// 		}
+	// 	};
+	// 	public update = async (
+	// 		data: Partial<User>,
+	// 	): Promise<User[] | unknown> => {
+	// 		const connection = await new MySQLService().connect();
+	// 		const sql= `
+	// 		UPDATE
+	// 		${process.env.MYSQL_DATABASE}.${this.table}
+	//         SET
+	// 		${this.table}. firstname = :firstname,
+	// 		${this.table}.  lastname= :lastname,
+	// 		${this.table}.  phone= :phone,
+	// 		${this.table}.  email= :email,
+	// 		${this.table}.  role_id= :role_id,
+	// 		WHERE
+	// 		${this.table}.user_id = :user_id;
+	// `;
+
+	// try {
+	// const[results]=await connection.execute(sql,data);
+	// //si le requête est reussi
+	// return results;
+	// }
+	// catch(error){
+	// 	return error;
+	// }
+	// };
+	// public delete = async (
+	// 	data: Partial<User>,): Promise<User[] | unknown> =>
+	// 		{const connection = await new MySQLService().connect();
+	// const sql =`
+
+	// DELETE FROM
+
+	// ${process.env.MYSQL_DATABASE}.${this.table}
+	// WHERE
+	// ${this.table}.user_id =:user_id;
+
+	// `
+	// ;
+	// try{
+	// const[results]=await connection.execute(sql,data);
+	// //si la requete est echoue
+	// return results;
+	// }catch(error){
+	// 	return error;
+	// }
+	// 	};
 }
 
 export default UserRepository;
-
-	

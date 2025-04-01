@@ -1,1 +1,0 @@
-SELECT image.* FROM  madameqalam_dev.image WHERE image.id IN (4,5,6);

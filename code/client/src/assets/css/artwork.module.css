@@ -1,61 +1,155 @@
 .art-container {
   display: flex;
   align-items: center;
-  justify-content: space-between; /* 🔹 Place le texte à gauche et l’image à droite */
+  justify-content: space-between; /* Place le texte à gauche et l’image à droite */
   max-width: 1000px;
   width: 90%;
-  gap: 30px;
-  margin: auto;  /* 🔹 Centre le conteneur */
+  gap: 20px;
+  margin: auto;  /* Centre le conteneur */
   min-height: 80vh;
+  border-bottom: 2px solid rgba(0, 0, 0, 0.1); /* ligne de séparation */
 }
 .art-text {
-  flex: 1; /* 🔹 Le texte prend 50% de la largeur */
-  max-width: 50%;
+  flex: 1; /* Le texte prend 50% de la largeur */
+  max-width: 48%;
+  justify-content: center; /* Centre le texte verticalement */
   text-align: left;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  border: 2px dashed red;
 }
 
 .art-image {
-  flex: 2; /* 🔹 L’image prend aussi 50% de la largeur */
+  flex: 2; /* L’image prend aussi 50% de la largeur */
   display: flex;
-
-  justify-content: flex-end; /* 🔹 Aligner l’image à droite */
+  border: 2px dashed blue;
+  justify-content: center ;/* flex-end ou start */
 }
 
 .art-image img {
-  max-width: 120%; /* 🔹 L’image s’adapte bien */
-  width: 5OOpx;
+  width: 100%; /*  L’image s’adapte bien */
+    max-width: 350px;   
+  /* réduit un peu la taille max */
   height: auto;
-  border-radius: 3px;
+  object-fit: contain; /* Garde le bon ratio sans déformation */
+  border-radius: 20px;
 }
-@media (max-width: 768px) {
+
+
+.art-text h1,
+.art-text h2,
+.art-text p {
+  color: #000; /* Texte noir */
+  margin: 0 0 15px 0; /* Espace bas entre les éléments */
+}
+
+.art-text h1 {
+  font-size: 2rem;
+}
+
+.art-text h2 {
+  font-size: 1.3rem;
+  font-weight: normal;
+}
+.art-text {
+  padding-top: 10px;
+}
+
+.art-text p {
+  line-height: 1.6;
+  font-size: 15px;
+}
+
+.reverse {
+  flex-direction: row-reverse;
+}
+
+/* TABLETTE : entre 769px et 1024px */
+@media (max-width: 1024px) and (min-width: 769px) {
   .art-container {
-      flex-direction: column; /* 🔹 Place l’image en haut et le texte en bas */
-      text-align: center; /* 🔹 Centre le texte */
+    gap: 30px; /* Un peu plus serré que sur desktop */
+    padding: 40px 20px;
   }
 
-  .art-text, .art-image {
-      flex: none;
-      width: 100%; /* 🔹 Chaque élément prend toute la largeur */
+  .art-text {
+    max-width: 100%;
+    padding: 0 20px;
   }
 
-  .art-image {
-      justify-content: center; /* 🔹 Centre l’image */
-      margin-bottom: 20px; /* 🔹 Ajoute un espace entre l’image et le texte */
+  .art-text h1 {
+    font-size: 24px;
+  }
+
+  .art-text h2 {
+    font-size: 18px;
+  }
+
+  .art-text p {
+    font-size: 15px;
+    line-height: 1.6;
+  }
+
+  .art-image img {
+    max-width: 300px;
+  }
+}
+
+
+@media (max-width: 260px) {
+  .art-container {
+      flex-direction: column; /*  Place l’image en haut et le texte en bas */
+      text-align: center; /*  Centre le texte */
+      padding: 20px;
     
   }
 
-  @media (max-width: 768px) {
-    .art-image img {
-        max-width: 100%;
-        width: 90%;
-    }
+  .art-text, .art-image {
+     
+      width: 100%; /* Chaque élément prend toute la largeur */
+  }
+
+  .art-image {
+      justify-content: center; /* Centre l’image */
+      margin-bottom: 20px; /*  Ajoute un espace entre l’image et le texte */
+      flex: none;
+  }
+
+
+  .art-image img {
+    width: 100% !important;
+    /* max-width: 350px;  */
+     /* pour mettre l'image dans tous le largeur dispose */
+     max-width: none !important; /* retire toute limite */
+     height: auto;
+     object-fit: contain;
+  }
+
+  .art-text {
+  
+    padding:0 20px;
+    width: 100%;
+    max-width: 100%; /* égale à l’image */
+    margin: 0 auto;
+    justify-content: center;
+    order: 2;
+    
+
+  }
+  
+  .art-text h1 {
+    font-size: 22px;
+  }
+  
+  .art-text h2 {
+    font-size: 18px;
+  }
+  
+  .art-text p {
+    font-size: 14px;
+    line-height: 1.6;
+    padding: 0;
   }
   
 
-
-  .art-text {
-      max-width: 600px;
-      width: 90%;
-      margin: auto; /* 🔹 Centre le texte */
-  }
 }

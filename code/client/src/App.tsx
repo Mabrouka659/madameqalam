@@ -17,16 +17,20 @@ le nom du composant devient une balise
 // import BiographiePage from "./page/BiographiePage";
 // import ContactPage from "./page/ContactPage";
 // import Header from "./component/common/Header";
-
+// import './assets/css/fonts.css';
 import "./assets/css/reset.module.css";
 import "./assets/css/style.module.css";
  import { RouterProvider } from "react-router-dom";
  import router from "./service/router";
+import { UserProvider } from "./provider/UserProvider";
 
 
 
 const App = () => {
-  return <RouterProvider router={router} />;
+  return <UserProvider>
+
+    <RouterProvider router={router} />
+  </UserProvider>
 };
 
 

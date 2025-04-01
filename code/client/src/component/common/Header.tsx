@@ -18,13 +18,13 @@ const Header = () => {
 			<div className={styles["logo-container"]}>
 				{/* utiliser / pour cibler le dossier public  */}
 				<Link to={"/accueil"}>
-					<img src="/img/logo.png" alt="logo Madame Qalam"  className={styles["logo"]}/>
+					<img src="/img/logo.png" alt="logo Madame Qalam"  className={styles.logo}/>
 				</Link>
 			</div>
-			{/*Bouton menu burgur*/}
-			<button className={styles["menu-btn"]} onClick={toggleMenu}> ☰</button>
+			
+			<button type="button" className={styles["menu-btn"]} onClick={toggleMenu}> </button>
 			{/* Navigation */}
-			<Nav menuOpen = {menuOpen} toggleMenu={toggleMenu} />
+			<Nav />
 
 
 

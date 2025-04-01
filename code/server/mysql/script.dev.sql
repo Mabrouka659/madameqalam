@@ -4,6 +4,7 @@ DROP DATABASE IF EXISTS madameqalam_dev;
 
 -- créer de base de données
 CREATE DATABASE madameqalam_dev;
+-- USE madameqalam_dev;
 
 -- créer les tables
 -- commence par les tables qui n'ayant pas de clés étrangéres
@@ -18,6 +19,7 @@ CREATE TABLE madameqalam_dev.user(
     lastname VARCHAR(50) NOT NULL,
     phone VARCHAR(50) NOT NULL,
     email VARCHAR(50) NOT NULL UNIQUE,
+    password VARCHAR (150) NOT NULL,
     role_id TINYINT(1) UNSIGNED ,
     FOREIGN KEY (role_id) REFERENCES role(id)
 );
@@ -86,14 +88,13 @@ VaLUES
   (NULL,'ecole primaire','initiation du calligraphie arabe',300)
   ;
 
+-- mdp : admin / user1 / user2
 INSERT INTO madameqalam_dev.user
 VaLUES
-  (NULL,'ali ','rabi','0796875021' ,'rabiali@gmail.com',1 ),
-  (NULL,'ines','chouchen','0648503920','ineschouchen@gmail.com',2),
-  (NULL,'meriem','dren','0739452612','drenmeriem@gmail.com',2)
+  (NULL,'ali','rabi','0796875021' ,'rabiali@gmail.com', '$argon2i$v=19$m=16,t=2,p=1$VXJjdThPWHdxMG95M1pZeg$mJsRWsXCfXiBYp5Ho6fP6A' ,1 ),
+  (NULL,'ines','chouchen','0648503920','ineschouchen@gmail.com', '$argon2i$v=19$m=16,t=2,p=1$VXJjdThPWHdxMG95M1pZeg$pL9rIcBRn/3KgmopVffBEQ',2),
+  (NULL,'meriem','dren','0739452612','drenmeriem@gmail.com', '$argon2i$v=19$m=16,t=2,p=1$VXJjdThPWHdxMG95M1pZeg$tFRqh7v4FfKDdaA3hdxCrA',2)
 ;
-
-
 
 
 INSERT INTO madameqalam_dev.artwork
