@@ -1,0 +1,72 @@
+@import url('https://fonts.googleapis.com/css2?family=Anek+Bangla:wght@400;600&display=swap');
+
+.container-form {
+  max-width: 450px;
+  margin: 120px auto 80px;
+  padding: 50px 30px;
+  background: linear-gradient(to bottom, #FAD7C4, #E3D6F2, #FFFFFF);
+  border-radius: 25px;
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
+  font-family: 'Anek Bangla', sans-serif;
+}
+
+/* Titre */
+h2 {
+  text-align: center;
+  font-family: 'Antonellie', cursive;
+  font-size: 2.5rem;
+  color: #1f195c;
+  margin-bottom: 40px;
+}
+
+/* Champs du formulaire */
+form p {
+  margin-bottom: 20px;
+}
+
+label {
+  display: block;
+  font-weight: 600;
+  margin-bottom: 8px;
+  color: #333;
+}
+
+input {
+  width: 100%;
+  padding: 10px 14px;
+  border: 1px solid #ccc;
+  border-radius: 10px;
+  font-size: 1rem;
+  background-color: #fff;
+}
+
+/* Messages d'erreur */
+small {
+  color: #BF4C41;
+  font-size: 0.85rem;
+}
+
+/* Bouton */
+button[type="submit"] {
+  width: 100%;
+  background-color: #7E83E7;
+  color: white;
+  padding: 12px;
+  font-size: 1rem;
+  border: none;
+  border-radius: 30px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  margin-top: 15px;
+}
+
+button[type="submit"]:hover {
+  background-color: #5b5fcf;
+}
+
+/* Message d'erreur */
+.message {
+  text-align: center;
+  color: #BF4C41;
+  margin-bottom: 15px;
+}

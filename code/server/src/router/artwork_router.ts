@@ -17,13 +17,15 @@ class artworkRouter {
 		this.router.get("/:id", new artworkController().one);
 
 		this.router.post("/",
-			new AuthorizationMiddleware().check(["user"]),
+			new AuthorizationMiddleware().check(["admin"]),
 			this.upload.any(), new ArtworkfileMiddleware().process,
 			new artworkController().insert);
 
-		this.router.put("/", this.upload.any(), new ArtworkfileMiddleware().process, new artworkController().update);
+		this.router.put("/",
+			 new AuthorizationMiddleware().check(["admin"]),
+			this.upload.any(), new ArtworkfileMiddleware().process, new artworkController().update);
 		
-		this.router.delete("/", this.upload.any(), new ArtworkfileMiddleware().process, new artworkController().delete);
+		this.router.delete("/", new AuthorizationMiddleware().check(["admin"]),this.upload.any(), new artworkController().delete);
 
 		return this.router;
 	};

@@ -6,13 +6,14 @@
  margin: 0;
   padding: 0;
   background: linear-gradient(to bottom, #F4CA96, #7E83E7,#FFFFFF);
+  padding-top: 20rem;
 }
 
 .container {
   width: 80%;
   margin: auto;
   text-align: center;
-
+margin-top: 90px;
 }
 html, body {
   height: 100%;

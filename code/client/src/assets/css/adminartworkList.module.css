@@ -1,0 +1,73 @@
+@import url('https://fonts.googleapis.com/css2?family=Anek+Bangla:wght@400;600&display=swap');
+
+.admin-list-container {
+  max-width: 95%;
+  margin: 120px auto 50px;
+  padding: 30px;
+  background: linear-gradient(to bottom, #FAD7C4, #E3D6F2, #FFFFFF);
+  border-radius: 20px;
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.08);
+  font-family: 'Anek Bangla', sans-serif;
+  overflow-x: auto;
+}
+
+h2 {
+  text-align: center;
+  font-size: 2.3rem;
+  color: #1f195c;
+  margin-bottom: 30px;
+}
+
+p a {
+  display: inline-block;
+  background-color: #7E83E7;
+  color: white;
+  padding: 10px 20px;
+  border-radius: 30px;
+  text-decoration: none;
+  font-weight: 600;
+  margin-bottom: 20px;
+  transition: background-color 0.3s ease;
+}
+
+p a:hover {
+  background-color: #5b5fcf;
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  background: #fff;
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.05);
+}
+
+th, td {
+  text-align: left;
+  padding: 12px 18px;
+  border-bottom: 1px solid #eee;
+  font-size: 0.95rem;
+  color: #333;
+}
+
+th {
+  background-color: #f2f2f2;
+  font-weight: 600;
+  color: #444;
+}
+
+td:last-child {
+  white-space: nowrap;
+}
+
+td a {
+  margin-right: 10px;
+  color: #7E83E7;
+  font-weight: bold;
+  text-decoration: none;
+}
+
+td a:hover {
+  text-decoration: underline;
+}

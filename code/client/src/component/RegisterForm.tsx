@@ -5,7 +5,7 @@ import { useNavigate } from "react-router-dom";
 import SecurityAPI from "../service/security_api";
 import { useState } from "react";
 import Notice from "./common/Notice";
-
+import styles from "../assets/css/registerForm.module.css";
 /*
     handleSubmit permet de gérer la soumission du formulaire 
     register permet de référencer les champs de formulaire 
@@ -13,11 +13,9 @@ import Notice from "./common/Notice";
     reset permet de réinitilaiser /mettre à jour les données d'un formulaire
      >sur les cases à cocher , utiliser un array
     */
-const RegisterForm = () => {
+function RegisterForm() {
 	const {
-		handleSubmit,
-		register,
-		formState: { errors },
+		handleSubmit, register, formState: { errors },
 	} = useForm<User>();
 
 	//
@@ -25,7 +23,6 @@ const RegisterForm = () => {
 
 	// const navigate = useNavigate();
 	//récupérer l'identifiant de l'URL
-
 	//message de formulaire
 	const [message, setMessage] = useState<string>();
 	// requete HTTP
@@ -35,7 +32,6 @@ const RegisterForm = () => {
 		console.log(request);
 
 		// console.log(values);
-
 		if ([200, 201].indexOf(request.status) > -1) {
 			// stocker un message en session
 			window.sessionStorage.setItem("notice", "Account created");
@@ -49,21 +45,18 @@ const RegisterForm = () => {
 	};
 
 	//requéte HTTP
-
 	//
-
 	return (
-		<>
-			<h2> Register </h2>
+		< div className={styles["container-form"]}>
+			<h2> Inscription </h2>
 
 			<Notice />
 
-			{message ? <p>{message}</p> : null}
+			{message ? <p className={styles.message}>{message}</p> : null}
 
 			<form onSubmit={handleSubmit(onSubmit)}>
-				<ul>
 					<p>
-						<label htmlFor="fristname">Nom</label>
+						<label htmlFor="fristname">Prénom</label>
 						{/* rependre STRICTEMENT le nom des colonnes SQL */}
 
 						<input
@@ -71,34 +64,31 @@ const RegisterForm = () => {
 							id="firstname"
 							{...register("firstname", {
 								required: "firstname is requiredce",
-							})}
-						/>
+							})} />
 						<small>{errors.firstname?.message}</small>
 					</p>
-				</ul>
+				
 				<p>
-					<label htmlFor="lastname">Prénom</label>
+					<label htmlFor="lastname">Nom</label>
 					{/* rependre STRICTEMENT le nom des colonnes SQL */}
 					<input
 						type="lastname"
 						// id="description"
 						{...register("lastname", {
 							required: "lastname is required",
-						})}
-					/>
+						})} />
 					<small>{errors.lastname?.message}</small>
 				</p>
 
 				<p>
-					<label htmlFor="phone">Télephone</label>
+					<label htmlFor="phone">Téléphone</label>
 					{/* rependre STRICTEMENT le nom des colonnes SQL */}
 					<input
 						type="phone"
 						// id="price"
 						{...register("phone", {
 							required: "phone is required",
-						})}
-					/>
+						})} />
 					<small> {errors.phone?.message}</small>
 				</p>
 
@@ -109,8 +99,7 @@ const RegisterForm = () => {
 						type="email"
 						{...register("email", {
 							required: "email is required",
-						})}
-					/>
+						})} />
 
 					<small> {errors.email?.message}</small>
 				</p>
@@ -122,15 +111,14 @@ const RegisterForm = () => {
 						// id="description"
 						{...register("password", {
 							required: "password is required",
-						})}
-					/>
+						})} />
 					<small>{errors.password?.message}</small>
 				</p>
 
-				<button type="submit">s'inscrire</button>
+				<button type="submit">S'inscrire</button>
 			</form>
-		</>
+			</div>
 	);
-};
+}
 
 export default RegisterForm;

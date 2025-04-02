@@ -1,10 +1,11 @@
 @font-face {
   font-family: 'Antonellie';
-  src: url('../../public/font/Antonellie Calligraphy Demo.ttf') format('truetype');
+  src: url('/font/Antonellie Calligraphy Demo.ttf') format('truetype');
 }
 
+
 .Biographie {
-  background: linear-gradient(to bottom, #FAD7C4, #E3D6F2, #FFFFFF);
+  background: linear-gradient(to bottom, #FFFFFF, #F4CA96, #7E83E7);
   min-height: 100vh;
   padding: 100px 5% 60px;
   font-family: 'Anek Bangla', sans-serif;
@@ -13,12 +14,18 @@
   align-items: center;
 }
 
-.Biographie h1 {
-  font-size: 3rem;
-  margin-bottom: 60px;
+
+/* Biographie */
+.title {
   font-family: 'Antonellie', cursive;
-  color: #7E83E7;
+  font-size: 3rem;
+  color: #111111e8;
+  margin-bottom: 30px;
+  text-align: left;
+  line-height: 1;
+ 
 }
+
 
 .bio-container {
   display: flex;
@@ -59,12 +66,12 @@
 
 /* Bouton */
 .bio-text button {
-  margin-top: 20px;
-  padding: 10px 24px;
-  background-color: #BF4C41;
+  margin-top: 30px;
+  padding: 12px 30px;
+  background-color: #1f195c;
   color: white;
   border: none;
-  border-radius: 30px;
+  border-radius: 25px;
   font-size: 16px;
   cursor: pointer;
   transition: background-color 0.3s ease;

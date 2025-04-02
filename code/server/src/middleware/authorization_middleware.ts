@@ -28,10 +28,12 @@ class AuthorizationMiddleware{
                         ? "Error"
                         : "Unauthorized - Invalid  token",
             });
-            // bloquer la suite du script 
+            // bloquer la suite du script
             return
-        }
-        // vérifier le role de l'utilisateur 
+                }
+        
+
+//         // vérifier le role de l'utilisateur 
         if (roles.indexOf(tokenDecoded.user.role.name) === -1) {
             res.status(401).json({
             status: 401,
@@ -45,9 +47,9 @@ class AuthorizationMiddleware{
             return
         }
         
-        //passer au middleware
+//         //passer au middleware
         next();
     };
 
-}
+ }
 export default AuthorizationMiddleware;

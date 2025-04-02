@@ -37,9 +37,12 @@ const response = await fetch(request);
 };
 ////récupération de tous les enregistrement 
     
-public insert = async(data: FormData)=>{
+public insert = async(data: FormData, token: string)=>{
     const request = new Request(`${import.meta.env.VITE_API_URL}/${this.route}`,{
         method: 'POST',
+        headers:{
+            Authorization:`Bearer ${token}`,
+        },
         body: data
     });
 //exécuter la requéte 
@@ -53,9 +56,12 @@ const response = await fetch(request);
     return response.json();
 
 };
-public update = async(data: FormData)=>{
+public update = async(data: FormData, token:string)=>{
     const request = new Request(`${import.meta.env.VITE_API_URL}/${this.route}`,{
-        method: 'POST',
+        method: 'PUT',
+        headers:{
+            Authorization: `Bearer ${token}`,
+        },
         body: data
     });
 //exécuter la requéte 

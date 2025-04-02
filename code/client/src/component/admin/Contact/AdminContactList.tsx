@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react"
 import ContactAPI from "../../../service/contact_api";
-import Contact from "../../../model/contact";
+import type Contact from "../../../model/contact";
 import { Link } from "react-router-dom";
 
 const AdminContactList = () => {

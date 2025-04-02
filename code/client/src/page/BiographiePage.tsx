@@ -4,10 +4,10 @@ import styles from "../assets/css/biographie.module.css";
 const BiographiePage = () => {
 	return (
 		<section className={styles.Biographie}>
-<h1 style={{ fontFamily: "Antonellie" }}>Biographie</h1>
 			<div className={styles["bio-container"]}>
-				{/* Le texte */}
 				<div className={styles["bio-text"]}>
+					
+				<h1 className={styles.title}>Biographie</h1>
 					<h2> Un parcours entre tradition et modernité</h2>
 					<p>
 						D’origine arabophone, la calligraphie fait partie de l’identité
@@ -40,9 +40,11 @@ const BiographiePage = () => {
 						lettres et de continuer à faire évoluer la calligraphie en mêlant
 						tradition et modernité.
 					</p>
-
+					
+<button className={styles.contactBtn}>Contact</button>
 					
 				</div>
+
 				<div className={styles["bio-image"]}>
 					<img src={profileImage} alt="Portrait de Madame Qalam" />
 				</div>

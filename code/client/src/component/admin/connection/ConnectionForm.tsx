@@ -5,24 +5,24 @@ import SecurityAPI from "../../../service/security_api";
 import { useContext, useState } from "react";
 import Notice from "../../common/Notice";
 import { UserContext } from "../../../provider/UserProvider";
+import styles from "../../../assets/css/connectionForm.module.css";
 
-const ConnectionForm = () => {
+
+
+function ConnectionForm() {
 	/*
-    handleSubmit permet de gérer la soumission du formulaire 
-    register permet de référencer les champs de formulaire 
-    errors permet de gérer les messages d'erreur 
-    */
+handleSubmit permet de gérer la soumission du formulaire
+register permet de référencer les champs de formulaire
+errors permet de gérer les messages d'erreur
+*/
 	const {
-		handleSubmit,
-		register,
-		formState: { errors },
+		handleSubmit, register, formState: { errors },
 	} = useForm<User>();
 
 	//redirection
 	const navigate = useNavigate();
 	// const navigate = useNavigate();
 	//récupérer l'identifiant de l'URL
-
 	//message de formulaire
 	const [message, setMessage] = useState<string>();
 
@@ -36,14 +36,12 @@ const ConnectionForm = () => {
 		console.log(values);
 
 		//tester le code de statut HTTP
-
 		if ([200, 201].indexOf(request.status) > -1) {
 			// stocker un message en session
 			// window.sessionStorage.setItem("notice", "Account created");
 			setUser(request.data);
 			//redirection
 			// navigate("/connection");
-
 			if (request.data.role.name === "admin") {
 				navigate("/admin");
 			} else if (request.data.role.name === "user") {
@@ -59,12 +57,12 @@ const ConnectionForm = () => {
 	};
 
 	return (
-		<>
+		<div className={styles["container-form"]}>
 			<h2>Connection</h2>
 
 			<Notice />
 
-			{message ? <p>{message}</p> : null}
+			{message ? <p className={styles.message}>{message}</p> : null}
 
 			<form onSubmit={handleSubmit(onSubmitConnection)}>
 				<p>
@@ -78,8 +76,7 @@ const ConnectionForm = () => {
 								value: 5,
 								message: "email is too short",
 							},
-						})}
-					/>
+						})} />
 					<small> {errors.email?.message}</small>
 				</p>
 				<p>
@@ -92,8 +89,7 @@ const ConnectionForm = () => {
 								value: 5,
 								message: "password is too short",
 							},
-						})}
-					/>
+						})} />
 					<small> {errors.password?.message}</small>
 				</p>
 				<p>
@@ -102,8 +98,7 @@ const ConnectionForm = () => {
 
 				<Link to="/register">Inscription</Link>
 			</form>
-		</>
+		</div>
 	);
-};
-
+}
 export default ConnectionForm;
