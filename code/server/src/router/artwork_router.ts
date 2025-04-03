@@ -21,6 +21,12 @@ class artworkRouter {
 			this.upload.any(), new ArtworkfileMiddleware().process,
 			new artworkController().insert);
 
+		this.router.post("/register",
+			new AuthorizationMiddleware().check(["admin"]),
+			this.upload.any(), new ArtworkfileMiddleware().process,
+			new artworkController().insert);
+		// Ajoutez un middleware ou une configuration pour gérer les délais d'attente si nécessaire
+
 		this.router.put("/",
 			 new AuthorizationMiddleware().check(["admin"]),
 			this.upload.any(), new ArtworkfileMiddleware().process, new artworkController().update);

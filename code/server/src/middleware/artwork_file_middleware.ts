@@ -6,7 +6,7 @@ import type Artwork from "../model/artwork.js";
 class ArtworkfileMiddleware{
 
     public process = async (req: Request, res: Response, next: NextFunction) => {
-        //  console.log(req.files);
+        //   console.log(req.files);
         //  console.log(req.body);
 
         // récuperer le ficher transfére

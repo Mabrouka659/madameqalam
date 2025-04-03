@@ -3,6 +3,7 @@ import ArtworkAPI from "../../../service/artwork_api";
 import type Artwork from "../../../model/artwork";
 import { Link } from "react-router-dom";
 import type Image from "../../../model/image";
+import styles from "../../../assets/css/adminartworkForm.module.css";
 
 const AdminArtworkList = () => {
     //état pour stocker les données
@@ -14,12 +15,14 @@ const AdminArtworkList = () => {
     }
         , []);
     return (
-        <>
+        
+         <div className={styles["admin-list-container"]}>
             <h2>Artwork List</h2>
             <p>
                 <Link to={"/admin/artwork/form"}> Add</Link>
 </p>
  <table >
+ <thead>
                 <tr>
                     <th>Name</th>
                     <th>Description</th>
@@ -27,6 +30,8 @@ const AdminArtworkList = () => {
                     <th>Image</th>
                     <th>Category</th>
                 </tr>
+                </thead>
+                <tbody>
                 {artworks.map((artwork) => {
                     return (
                        
@@ -48,10 +53,11 @@ const AdminArtworkList = () => {
                             </td>
                         </tr>) ;
                 })}
+                  </tbody>
             </table>
-           
-            </>         
-            )   
+            </div>
+                    
+            ) ;  
 }
 
 export default AdminArtworkList;

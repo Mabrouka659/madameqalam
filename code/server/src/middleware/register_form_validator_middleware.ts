@@ -1,5 +1,5 @@
 import type { NextFunction, Request, Response } from "express";
-import RegisterFormValidator from "../validator/register_from_validator.js";
+import RegisterFormValidator from "../validator/register_form_validator.js";
 
 
 class RegisterFormValidatorMiddleware {
@@ -7,7 +7,7 @@ class RegisterFormValidatorMiddleware {
 
         // envoyer la saisie au validateur 
         const isValid = new RegisterFormValidator().isValid(req.body);
-        // console.log(isValid);
+    //    console.log(isValid);
         
         // si une erreur de valideation est renvoye 
         if (isValid instanceof Error) {
@@ -21,7 +21,7 @@ class RegisterFormValidatorMiddleware {
             return;
         }
         // passer le middleware suivant 
-            
+            next()
     };
 }
 
