@@ -30,3 +30,10 @@ jobs:
          run: |
            cd code/client
            npm run build
+      -   
+         name: Install test database
+         run: |
+           studo service mysql start
+           cd code/server/mysql
+           mysql -uroot -proot -e 'SOURCE script.test.sql;'
+           mysql -uroot -proot -e 'SHOW DATABASES;'
