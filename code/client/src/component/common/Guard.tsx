@@ -1,7 +1,7 @@
 import { useContext, useEffect } from "react";
 import type GuardProps from "../../model/propos/guard_props";
 import { UserContext } from "../../provider/UserProvider";
-import { Navigate, useNavigate } from "react-router-dom";
+import {  useNavigate } from "react-router-dom";
 
 const Guard = ({ children, roles }: GuardProps) => {
 	// importer le contexte

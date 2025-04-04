@@ -1,9 +1,7 @@
 import  type User from "../model/user";
 
 class SecurityAPI{
-delete(formData: FormData, token: any) {
-	throw new Error("Method not implemented.");
-}
+
 
     // route de L'API
    

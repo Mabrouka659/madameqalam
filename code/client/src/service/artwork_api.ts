@@ -78,9 +78,12 @@ const response = await fetch(request);
 
 // supprimer un enregistement 
 
-public delete = async(data: FormData)=>{
+public delete = async(data: FormData, token:string)=>{
     const request = new Request(`${import.meta.env.VITE_API_URL}/${this.route}`,{
         method: 'DELETE',
+        headers:{
+            Authorization: `Bearer ${token}`,
+        },
         body: data
     });
 //exécuter la requéte 

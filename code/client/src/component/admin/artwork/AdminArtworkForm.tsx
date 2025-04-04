@@ -1,12 +1,11 @@
 import { useForm } from "react-hook-form";
 import ArtworkAPI from "../../../service/artwork_api";
-import { useContext, useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import CategorysAPI from "../../../service/category_api";
-import { useNavigate, useParams } from "react-router-dom";
+import { useParams } from "react-router-dom";
 import type Category from "../../../model/category";
 import type Artwork from "../../../model/artwork";
-import SecurityAPI from "../../../service/security_api";
-import { UserContext } from "../../../provider/UserProvider";
+
 import styles from "../../../assets/css/adminartworkForm.module.css";
 /*
     handleSubmit permet de gérer la soumission du formulaire 
@@ -26,14 +25,13 @@ const AdminArtworkForm = () => {
 	//
 	const [categories, setCategories] = useState<Category[]>();
 
-	const navigate = useNavigate();
 	//récupérer l'identifiant de l'URL
 
 	const { id } = useParams();
 	// console.log(id);
 
 	//récuperer l'utilisateur
-	const { user, setUser } = useContext(UserContext);
+	
 
 	// biome-ignore lint/correctness/useExhaustiveDependencies: <explanation>
 	useEffect(() => {
@@ -85,12 +83,11 @@ const AdminArtworkForm = () => {
 		//  console.log(values);
 
 		// console.log(formData);
-		const auth = await new SecurityAPI().auth(user);
+	
 		// console.log(auth.data.token);
 		//requétte HTTP
-		const request = id
-			? await new ArtworkAPI().update(formData, auth.data.token)
-			: await new ArtworkAPI().insert(formData, auth.data.token);
+		
+			
 		// tester le code de statut HTTP
 		// if ([200, 201].indexOf(request.status) === -1) {
 		// 	//redirection

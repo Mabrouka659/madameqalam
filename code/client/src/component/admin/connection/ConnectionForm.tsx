@@ -27,7 +27,7 @@ errors permet de gérer les messages d'erreur
 	const [message, setMessage] = useState<string>();
 
 	//contexte
-	const { user, setUser } = useContext(UserContext);
+	const { setUser } = useContext(UserContext);
 	// requete HTTP
 	const onSubmitConnection = async (values: User) => {
 		console.log(values);

@@ -10,27 +10,26 @@ const Header = () => {
 	/* en React, l'attribut class est remplacé par className*/
 
 	const toggleMenu = () => {
-        setMenuOpen(!menuOpen);
-    };
+		setMenuOpen(!menuOpen);
+	};
 	return (
 		<header className={styles["site-header"]}>
-
 			<div className={styles["logo-container"]}>
 				{/* utiliser / pour cibler le dossier public  */}
 				<Link to={"/accueil"}>
-					<img src="/img/logo.png" alt="logo Madame Qalam"  className={styles.logo}/>
+					<img
+						src="/img/logo.png"
+						alt="logo Madame Qalam"
+						className={styles.logo}
+					/>
 				</Link>
 			</div>
-			
-			<button type="button" className={styles["menu-btn"]} onClick={toggleMenu}> </button>
+
+			<button type="button" className={styles["menu-btn"]} onClick={toggleMenu}>
+				{" "}
+			</button>
 			{/* Navigation */}
 			<Nav />
-
-
-
-			
-            
-
 		</header>
 	);
 };

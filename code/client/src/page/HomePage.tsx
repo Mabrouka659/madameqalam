@@ -1,4 +1,4 @@
-import profileImage from '../../public/img/profileImage.jpg'
+
 import styles from '../assets/css/home.module.css'
 import Notice from '../component/common/Notice';
 const HomePage = () => {
