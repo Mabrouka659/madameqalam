@@ -12,16 +12,21 @@
 
 .footer {
   width: 100%;
-  position: fixed;
+  /* position: fixed; */
   bottom: 0;
   left: 0;
-  /* couleur de fond  pour une meilleure visibilité  */
-  background-color: #974e4e25;
-  display: flex;
-  align-items: center;
+  padding: 30px 0;
+  background: linear-gradient(to top, #FAD7C4, #E3D6F2)5;
+  text-align: center;
+  font-family: 'Anek Bangla', sans-serif;
+  font-size: 0.9rem;
+  color: #333;
+  position: relative;
+  /* display: flex; */
+
   justify-content: space-between;/* Permet d'espacer le logo et le texte */
   /* padding: 10px; */
-  height: 60px;
+  height: 60px
 }
 
 .logo {
@@ -36,10 +41,18 @@
 }
 
 .footercontent {
-  display: flex;
+  /* display: flex;
   align-items: center;
   width: 100%;
-  justify-content: space-between; /* Espacement entre logo et texte */
+  justify-content: space-between; */
+   /* Espacement entre 
+   logo et texte */
+   display: flex;
+   flex-direction: column;
+   align-items: center;
+   gap: 15px;
+
+
 }
 
 
