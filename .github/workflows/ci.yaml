@@ -1,7 +1,9 @@
 name: Madame qalam CI
 
-on:  workflow_dispatch 
-
+on: 
+  push:
+    branches: ['master']
+    
 jobs:
   Execute_my_CI:
     runs-on: ubuntu-latest
