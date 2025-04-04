@@ -33,7 +33,13 @@ jobs:
       -   
          name: Install test database
          run: |
-           studo service mysql start
+           sudo service mysql start
            cd code/server/mysql
            mysql -uroot -proot -e 'SOURCE script.test.sql;'
            mysql -uroot -proot -e 'SHOW DATABASES;'
+      -   
+         name: Execute tests
+         run: |
+           
+           
+         
