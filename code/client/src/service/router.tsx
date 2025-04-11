@@ -92,27 +92,7 @@ const router = createBrowserRouter([
 				element: <AdminArtworkDeletePage />,
 			},
 
-		
-
-			// {
-			// 	path: "contact",
-			// 	element: <AdminContactPage />,
-			// },
-
-			// {
-			// 	path: "contact/form",
-			// 	element: <AdminContactFormPage />,
-			// },
-
-			// {
-			// 	path: "biographie",
-			// 	element: <BiographiePage />,
-			// },
-
-			// {
-			// 	path: "ateliers",
-			// 	element: <AteliersPage />,
-			// },
+	
 		],
 	},
 ]);

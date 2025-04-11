@@ -75,7 +75,7 @@ class UserRepository {
 
 			//récuperer le premier résultat
 			//shift permet de récupérer le premier indice d'un array
-			let result = (results as User[]).shift() as User;
+			const result = (results as User[]).shift() as User;
 			//composition permet d'associer la propriété d'un object à un autre objet
 			result.role = (await new RoleRepository().selectOne({
 				id: result?.role_id,

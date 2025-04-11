@@ -1,22 +1,20 @@
 import { useState } from "react";
 import Nav from "./Nav";
-/*import d'un CSS d'un composant
- */
 import styles from "../../assets/css/header.module.css";
 import { Link } from "react-router-dom";
+import { FaInstagram } from "react-icons/fa";
 
 const Header = () => {
-	const [menuOpen, setMenuOpen] = useState(false);
-	/* en React, l'attribut class est remplacé par className*/
+	// const [menuOpen, setMenuOpen] = useState(false);
 
-	const toggleMenu = () => {
-		setMenuOpen(!menuOpen);
-	};
+	// const toggleMenu = () => {
+	// 	setMenuOpen(!menuOpen);
+	// };
+
 	return (
 		<header className={styles["site-header"]}>
 			<div className={styles["logo-container"]}>
-				{/* utiliser / pour cibler le dossier public  */}
-				<Link to={"/accueil"}>
+				<Link to={"/"}>
 					<img
 						src="/img/logo.png"
 						alt="logo Madame Qalam"
@@ -25,11 +23,22 @@ const Header = () => {
 				</Link>
 			</div>
 
-			<button type="button" className={styles["menu-btn"]} onClick={toggleMenu}>
-				{" "}
-			</button>
+			
 			{/* Navigation */}
 			<Nav />
+
+			{/* Social Media Icons */}
+			<div className={styles["social-icons"]}>
+				<a 
+					href="https://instagram.com/madame_qalam" 
+					target="_blank" 
+					rel="noopener noreferrer"
+					className={styles["social-link"]}
+					aria-label="Instagram"
+				>
+					<FaInstagram className={styles["instagram-icon"]} />
+				</a>
+			</div>
 		</header>
 	);
 };

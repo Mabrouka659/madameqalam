@@ -10,7 +10,7 @@ import styles from "../../../assets/css/connectionForm.module.css";
 
 
 function ConnectionForm() {
-	/*
+/*
 handleSubmit permet de gérer la soumission du formulaire
 register permet de référencer les champs de formulaire
 errors permet de gérer les messages d'erreur
@@ -27,38 +27,39 @@ errors permet de gérer les messages d'erreur
 	const [message, setMessage] = useState<string>();
 
 	//contexte
-	const { setUser } = useContext(UserContext);
+	const {setUser } = useContext(UserContext);
 	// requete HTTP
 	const onSubmitConnection = async (values: User) => {
-		console.log(values);
+		// console.log(values);
 		const request = await new SecurityAPI().connection(values);
 
-		console.log(values);
+		// console.log(values);
 
 		//tester le code de statut HTTP
 		if ([200, 201].indexOf(request.status) > -1) {
 			// stocker un message en session
-			// window.sessionStorage.setItem("notice", "Account created");
+			window.sessionStorage.setItem("notice", "connexion reussie");
+
 			setUser(request.data);
+			
 			//redirection
 			// navigate("/connection");
 			if (request.data.role.name === "admin") {
 				navigate("/admin");
 			} else if (request.data.role.name === "user") {
-				navigate("/register");
+				navigate("/");
 			}
 
 			// 	navigate("/");
 		} else {
 			setMessage("echouee");
-
 			navigate("/");
 		}
 	};
 
 	return (
 		<div className={styles["container-form"]}>
-			<h2>Connection</h2>
+			<h2>Connexion</h2>
 
 			<Notice />
 

@@ -1,130 +1,82 @@
 import { Link } from "react-router-dom";
 import styles from "../../assets/css/nav.module.css";
-import { useContext, useState } from "react";
+import { useContext, useState, useEffect } from "react";
 import { UserContext } from "../../provider/UserProvider";
 import { RiAccountPinBoxFill } from "react-icons/ri";
 
-// Removed from global scope and will be defined inside the Nav component
-
 const Nav = () => {
-	// Fonction pour basculer l'affichage du menu
-
-	//recupere le donne  l'utilisateur
 	const { user } = useContext(UserContext);
-	const [menuOpen, setMenuOpen] = useState(false); // Pour menu mobile ☰
-	const [dropdownOpen, setDropdownOpen] = useState(false); // Pour le menu utilisateur
+	const [dropdownOpen, setDropdownOpen] = useState(false);
+
+	const toggleDropdown = () => {
+		setDropdownOpen(!dropdownOpen);
+	};
 
 	const closeAllMenus = () => {
-		setMenuOpen(false);
 		setDropdownOpen(false);
 	};
-	JSON.stringify(user);
 
-	return <>
-		<button
-			typeof="button"
-			className={styles["btn-nav-mobile"]}
-			type="button"
-			onClick={() => setMenuOpen(!menuOpen)}
-		>
-			☰
-		</button>
-		;
-		<nav
-			className={`${styles["site-nav"]} ${menuOpen ? styles["site-nav-visible"] : ""}`}
-		>
-			<Link to="/" onClick={closeAllMenus}>
-				Accueil
-			</Link>
-			<Link to="/oeuvres" onClick={closeAllMenus}>
-				Oeuvres
-			</Link>
-			<Link to="/ateliers" onClick={closeAllMenus}>
-				Ateliers
-			</Link>
-			<Link to="/biographie" onClick={closeAllMenus}>
-				Biographie
-			</Link>
+	// Ferme le dropdown lors du clic à l'extérieur
+	useEffect(() => {
+		const handleClickOutside = (event: MouseEvent) => {
+			if (
+				dropdownOpen &&
+				event.target instanceof Element &&
+				!event.target.closest(`.${styles["site-nav"]}`)
+			) {
+				setDropdownOpen(false);
+			}
+		};
+	
+		document.addEventListener("mousedown", handleClickOutside);
+		return () => {
+			document.removeEventListener("mousedown", handleClickOutside);
+		};
+	}, [dropdownOpen]);
+	
 
-			{/* <Link className={styles.con} to="/connection" onClick={toggleMenu} >
-                <RiAccountPinBoxFill className = {styles["per-icon"]} />
-                <span className={styles.titre} >Connection</span>
+	return (
+		<nav className={styles["site-nav-container"]}>
+	<button
+		type="button"
+		className={styles["menu-btn"]}
+		onClick={toggleDropdown}
+		aria-label="Menu"
+	>
+		☰
+	</button>
 
-                </Link>
-                
+	<div className={`${styles["site-nav"]} ${dropdownOpen ? styles["site-nav-visible"] : ""}`}>
+		<Link to="/oeuvres" onClick={closeAllMenus}>Oeuvres</Link>
+		<Link to="/ateliers" onClick={closeAllMenus}>Ateliers</Link>
+		<Link to="/biographie" onClick={closeAllMenus}>Biographie</Link>
 
-{user.id ?(
-    <Link to={"/deconnection"}>
-    
-    Deconnection
-    </Link>
+		<div className={styles["account-menu"]}>
+			<RiAccountPinBoxFill onClick={toggleDropdown} />
+			{dropdownOpen && (
+				<div className={styles["account-dropdown"]}>
+					{!user?.id && (
+						<>
+							<Link to="/connection" onClick={closeAllMenus}>Connexion</Link>
+							<Link to="/register" onClick={closeAllMenus}>Inscription</Link>
+						</>
+					)}
 
-):( <>
-<Link  to={"/register"} >
-Register
-</Link>
+					{user?.id && (
+						<>
+							<Link to="/deconnection" onClick={closeAllMenus}>Déconnexion</Link>
+							{user.role?.name === "admin" && (
+								<Link to="/admin" onClick={closeAllMenus}>Administration</Link>
+							)}
+						</>
+					)}
+				</div>
+			)}
+		</div>
+	</div>
+</nav>
 
-
-
-
-</>
-
-)}
-
-
-
-
-
-                <Link to={"/admin"}>Administration</Link>
-
-{
-                    user.role?.name === "admin" ? (
-                        <Link onClick={toggleMenu} to={"admin"}>
-                            Administration
-                        </Link>
-                    ) : null
-                } */}
-
-			<div className={styles["account-menu"]}>
-				{/* biome-ignore lint/a11y/useButtonType: <explanation> */}
-				<button
-					onClick={() => setDropdownOpen(!dropdownOpen)}
-					className={styles["account-button"]}
-				>
-					<RiAccountPinBoxFill className={styles["per-icon"]} />
-				</button>
-
-				{dropdownOpen && (
-					<div className={styles["account-dropdown"]}>
-						{!user.id && (
-							<>
-								<Link to="/connection" onClick={closeAllMenus}>
-									Connexion
-								</Link>
-								<Link to="/register" onClick={closeAllMenus}>
-									Inscription
-								</Link>
-							</>
-						)}
-
-						{user.id && (
-							<>
-								<Link to="/deconnection" onClick={() => setDropdownOpen(false)}>
-									Déconnexion
-								</Link>
-								{user.role?.name === "admin" && (
-									<Link to="/admin" onClick={() => setDropdownOpen(false)}>
-										Administration
-									</Link>
-								)}
-							</>
-						)}
-					</div>
-				)}
-			</div>
-		</nav>
-		;
-	</>
+	);
 };
 
 export default Nav;

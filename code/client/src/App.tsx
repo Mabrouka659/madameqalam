@@ -27,10 +27,11 @@ import { UserProvider } from "./provider/UserProvider";
 
 
 const App = () => {
-  return <UserProvider>
-
-    <RouterProvider router={router} />
-  </UserProvider>
+  return (
+  <UserProvider>
+			<RouterProvider router={router} />
+		</UserProvider>
+    )
 };
 
 

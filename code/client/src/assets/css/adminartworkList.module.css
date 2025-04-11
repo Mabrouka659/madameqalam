@@ -1,73 +1,342 @@
+/* Importation des polices */
 @import url('https://fonts.googleapis.com/css2?family=Anek+Bangla:wght@400;600&display=swap');
 
+/* Variables globales */
+:root {
+  --primary-color: #1f195c;
+  --secondary-color: #7E83E7;
+  --secondary-hover: #5b5fcf;
+  --background-gradient: linear-gradient(to bottom, #FAD7C4, #E3D6F2, #FFFFFF);
+  --white: #fff;
+  --light-gray: #f2f2f2;
+  --border-color: #eee;
+  --text-color: #333;
+  --text-dark: #444;
+  --text-light: #666;
+  --border-radius-lg: 20px;
+  --border-radius-md: 12px;
+  --border-radius-sm: 6px;
+  --shadow-lg: 0 10px 20px rgba(0, 0, 0, 0.08);
+  --shadow-md: 0 6px 18px rgba(0, 0, 0, 0.05);
+  --shadow-hover: 0 8px 25px rgba(0, 0, 0, 0.12);
+  --transition: all 0.3s ease;
+  --font-family: 'Anek Bangla', sans-serif;
+  --spacing-xs: 5px;
+  --spacing-sm: 10px;
+  --spacing-md: 15px;
+  --spacing-lg: 20px;
+  --spacing-xl: 30px;
+}
+
+/* Container principal */
 .admin-list-container {
   max-width: 95%;
   margin: 120px auto 50px;
-  padding: 30px;
-  background: linear-gradient(to bottom, #FAD7C4, #E3D6F2, #FFFFFF);
-  border-radius: 20px;
-  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.08);
-  font-family: 'Anek Bangla', sans-serif;
-  overflow-x: auto;
+  padding: var(--spacing-xl);
+  background: var(--background-gradient);
+  border-radius: var(--border-radius-lg);
+  box-shadow: var(--shadow-lg);
+  font-family: var(--font-family);
 }
 
+/* Titre */
 h2 {
   text-align: center;
   font-size: 2.3rem;
-  color: #1f195c;
-  margin-bottom: 30px;
+  color: var(--primary-color);
+  margin-bottom: var(--spacing-xl);
+  position: relative;
 }
 
+h2::after {
+  content: '';
+  display: block;
+  width: 60px;
+  height: 3px;
+  background-color: var(--secondary-color);
+  margin: 10px auto 0;
+  border-radius: 2px;
+}
+
+/* Bouton Ajouter */
 p a {
   display: inline-block;
-  background-color: #7E83E7;
-  color: white;
-  padding: 10px 20px;
+  background-color: var(--secondary-color);
+  color: var(--white);
+  padding: var(--spacing-sm) var(--spacing-lg);
   border-radius: 30px;
   text-decoration: none;
   font-weight: 600;
-  margin-bottom: 20px;
-  transition: background-color 0.3s ease;
+  margin-bottom: var(--spacing-lg);
+  transition: var(--transition);
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
 }
 
 p a:hover {
-  background-color: #5b5fcf;
+  background-color: var(--secondary-hover);
+  transform: translateY(-2px);
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
 }
 
+p a:active {
+  transform: translateY(0);
+}
+
+/* Wrapper pour le tableau avec scroll horizontal */
+.table-wrapper {
+  overflow-x: auto;
+  border-radius: var(--border-radius-md);
+  box-shadow: var(--shadow-md);
+  background-color: var(--white);
+  margin-bottom: var(--spacing-lg);
+  transition: var(--transition);
+}
+
+.table-wrapper:hover {
+  box-shadow: var(--shadow-hover);
+}
+
+/* Tableau */
 table {
   width: 100%;
-  border-collapse: collapse;
-  background: #fff;
-  border-radius: 12px;
-  overflow: hidden;
-  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.05);
+  border-collapse: separate;
+  border-spacing: 0;
+  background: var(--white);
+  table-layout: fixed;
 }
 
-th, td {
-  text-align: left;
-  padding: 12px 18px;
-  border-bottom: 1px solid #eee;
-  font-size: 0.95rem;
-  color: #333;
+/* En-têtes du tableau */
+thead {
+  position: sticky;
+  top: 0;
+  z-index: 10;
 }
 
 th {
-  background-color: #f2f2f2;
+  background-color: var(--light-gray);
   font-weight: 600;
-  color: #444;
+  color: var(--text-dark);
+  text-align: left;
+  padding: 16px 18px;
+  border-bottom: 2px solid var(--secondary-color);
+  font-size: 0.95rem;
+  transition: background-color 0.2s ease;
+  position: relative;
 }
 
-td:last-child {
-  white-space: nowrap;
+th:first-child {
+  border-top-left-radius: var(--border-radius-md);
 }
 
-td a {
-  margin-right: 10px;
-  color: #7E83E7;
-  font-weight: bold;
+th:last-child {
+  border-top-right-radius: var(--border-radius-md);
+}
+
+/* Effet de survol sur les en-têtes */
+thead tr:hover th {
+  background-color: #e8e8e8;
+}
+
+/* Cellules du tableau */
+td {
+  text-align: left;
+  padding: 16px 18px;
+  border-bottom: 1px solid var(--border-color);
+  font-size: 0.95rem;
+  color: var(--text-color);
+  word-wrap: break-word;
+  vertical-align: middle;
+  transition: background-color 0.2s ease;
+}
+
+/* Effet de survol sur les lignes */
+tbody tr:hover td {
+  background-color: rgba(126, 131, 231, 0.05);
+}
+
+/* Dernière ligne du tableau sans bordure */
+tbody tr:last-child td {
+  border-bottom: none;
+}
+
+/* Style pour les lignes alternées */
+tbody tr:nth-child(even) td {
+  background-color: rgba(242, 242, 242, 0.4);
+}
+
+tbody tr:nth-child(even):hover td {
+  background-color: rgba(126, 131, 231, 0.05);
+}
+
+/* Largeurs des colonnes */
+.col-id { width: 15%; }
+.col-title { width: 30%; }
+.col-category { width: 10%; }
+.col-date { width: 15%; }
+.col-status { width: 10%; }
+.col-actions { width: 20%; text-align: center; }
+
+/* Boutons d'action (éditer/supprimer) */
+.action-buttons {
+  display: flex;
+  gap: var(--spacing-sm);
+  justify-content: center;
+  align-items: center;
+  flex-wrap: nowrap;
+}
+
+.btn-edit, .btn-delete {
+  background-color: var(--light-gray);
+  padding: 8px 12px;
+  border-radius: var(--border-radius-sm);
+  color: var(--secondary-color);
+  font-weight: 600;
+  transition: var(--transition);
   text-decoration: none;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 75px;
 }
 
-td a:hover {
-  text-decoration: underline;
+.btn-edit:hover {
+  background-color: var(--secondary-color);
+  color: var(--white);
+}
+
+.btn-delete {
+  color: #e74c3c;
+}
+
+.btn-delete:hover {
+  background-color: #e74c3c;
+  color: var(--white);
+}
+
+/* Styles pour les statuts */
+.status-published, .status-draft {
+  display: inline-block;
+  padding: 4px 10px;
+  border-radius: 20px;
+  font-size: 0.8rem;
+  font-weight: 500;
+  text-align: center;
+}
+
+.status-published {
+  background-color: rgba(46, 204, 113, 0.15);
+  color: #27ae60;
+}
+
+.status-draft {
+  background-color: rgba(241, 196, 15, 0.15);
+  color: #f39c12;
+}
+
+/* Styles pour tablettes */
+@media (max-width: 992px) {
+  .admin-list-container {
+    padding: var(--spacing-lg);
+    margin: 100px auto 40px;
+  }
+  
+  h2 {
+    font-size: 2rem;
+  }
+  
+  th, td {
+    padding: 14px 16px;
+  }
+  
+  /* Ajustement des largeurs pour tablette */
+  .col-id { width: 15%; }
+  .col-title { width: 25%; }
+  .col-category { width: 15%; }
+  .col-date { width: 15%; }
+  .col-status { width: 10%; }
+  .col-actions { width: 20%; }
+}
+
+/* Styles pour mobiles */
+@media (max-width: 768px) {
+  .admin-list-container {
+    max-width: 100%;
+    padding: var(--spacing-md);
+    margin: 80px auto 30px;
+    border-radius: 12px;
+  }
+  
+  h2 {
+    font-size: 1.8rem;
+    margin-bottom: var(--spacing-lg);
+  }
+  
+  p a {
+    display: block;
+    text-align: center;
+    margin-bottom: var(--spacing-md);
+  }
+  
+  /* Table container avec indication de scroll */
+  .table-wrapper::after {
+    content: '←  Faites défiler  →';
+    display: block;
+    text-align: center;
+    padding: var(--spacing-sm);
+    color: var(--text-light);
+    font-size: 0.8rem;
+    font-style: italic;
+    background-color: rgba(0,0,0,0.02);
+    border-bottom-left-radius: var(--border-radius-md);
+    border-bottom-right-radius: var(--border-radius-md);
+  }
+  
+  /* Styles pour la vue mobile du tableau */
+  th, td {
+    padding: 12px 14px;
+    font-size: 0.85rem;
+    white-space: nowrap;
+  }
+  
+  /* Désactiver les largeurs fixes pour permettre le défilement horizontal */
+  .col-id, .col-title, .col-category, .col-date, .col-status, .col-actions {
+    width: auto;
+    min-width: 80px;
+  }
+  
+  .col-title {
+    min-width: 150px;
+  }
+  
+  .action-buttons {
+    flex-wrap: nowrap;
+  }
+  
+  .btn-edit, .btn-delete {
+    padding: 6px 10px;
+    font-size: 0.8rem;
+    min-width: 60px;
+  }
+}
+
+/* Styles pour très petits écrans */
+@media (max-width: 480px) {
+  .admin-list-container {
+    padding: var(--spacing-sm);
+    margin: 60px auto 20px;
+  }
+  
+  h2 {
+    font-size: 1.5rem;
+  }
+  
+  th, td {
+    padding: 10px 12px;
+    font-size: 0.8rem;
+  }
+  
+  .status-published, .status-draft {
+    padding: 3px 8px;
+    font-size: 0.75rem;
+  }
 }

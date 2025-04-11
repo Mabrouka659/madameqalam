@@ -1,64 +1,138 @@
-/* Footer */
-
-/* footer {
-  text-align: center;
-  padding: 20px;
-  background: #f0eaead5;
-  color: rgb(26, 16, 16);
-
-  
-} */
-/* Footer comme le Header */
-
 .footer {
+  background: linear-gradient(to bottom, #e8dbff, #d9c6ff);
+  padding: 2rem 1rem;
   width: 100%;
-  /* position: fixed; */
-  bottom: 0;
-  left: 0;
-  padding: 30px 0;
-  background: linear-gradient(to top, #FAD7C4, #E3D6F2)5;
-  text-align: center;
-  font-family: 'Anek Bangla', sans-serif;
-  font-size: 0.9rem;
-  color: #333;
-  position: relative;
-  /* display: flex; */
-
-  justify-content: space-between;/* Permet d'espacer le logo et le texte */
-  /* padding: 10px; */
-  height: 60px
 }
 
-.logo {
-  max-width: 160px;
-  height: auto;
-  
-}
-.logo img {
-  width: 160px; /* Ajuste cette valeur selon la taille désirée */
-  height: auto;
-  display: block; /* Pour éviter les marges blanches inutiles */
-}
-
-.footercontent {
-  /* display: flex;
+.footerContent {
+  display: flex;
+  justify-content: space-between;
   align-items: center;
-  width: 100%;
-  justify-content: space-between; */
-   /* Espacement entre 
-   logo et texte */
-   display: flex;
-   flex-direction: column;
-   align-items: center;
-   gap: 15px;
-
-
 }
 
+/* Section de gauche avec logo et contact */
+.leftSection {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 1rem;
+  flex:1;
+}
 
-.footertext {
-  flex: 1;
-  /* padding-bottom: 40px;  */
-  /* Ajuste selon la hauteur du footer */
+.logoLink {
+  display: block;
+}
+
+.logoImage {
+  height: auto;
+  width: 200px;
+}
+
+.contactLink {
+  color: #000;
+  text-decoration: none;
+  font-size: 1rem;
+  font-weight: 500;
+  transition: color 0.3s;
+}
+
+.contactLink:hover {
+  color: #333;
+  text-decoration: underline;
+}
+
+/* Section centrale avec mentions légales */
+.centerSection {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
   text-align: center;
+  flex: 2;
+  margin: 0 1rem;
+}
+
+.legalLinks {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  margin-bottom: 1rem;
+}
+
+.legalLink {
+  color: #000;
+  text-decoration: none;
+  font-size: 0.9rem;
+  transition: color 0.3s;
+}
+
+.legalLink:hover {
+  color: #333;
+  text-decoration: underline;
+}
+
+.copyright, .disclaimer {
+  font-size: 0.8rem;
+  color: #333;
+  margin-top: 0.5rem;
+}
+
+/* Section de droite avec icône Instagram */
+.rightSection {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  gap: 1rem;
+  flex: 1;
+ 
+}
+
+.blogLink {
+  color: #000;
+  text-decoration: none;
+  font-size: 1rem;
+  font-weight: 500;
+  transition: color 0.3s;
+}
+
+.blogLink:hover {
+  color: #333;
+  text-decoration: underline;
+}
+.socialLink {
+  color: #000;
+  transition: color 0.3s;
+}
+
+.socialLink:hover {
+  color: #333;
+}
+
+.instagramIcon {
+  width: 24px;
+  height: 24px;
+  position: absolute;
+  right: 171px;
+}
+
+/* Styles responsives */
+@media (max-width: 768px) {
+  .footerContent {
+    flex-direction: column;
+    align-items: center;
+    gap: 2rem;
+  }
+  
+  .leftSection {
+    align-items: center;
+  }
+  
+  .rightSection {
+    justify-content: center;
+  }
+}
+
+@media (min-width: 769px) and (max-width: 1024px) {
+  .footerContent {
+    padding: 0 2rem;
+  }
 }

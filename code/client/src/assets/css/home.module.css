@@ -1,13 +1,179 @@
-.video-container {
-    width: 100vh;
-    height: 400px;
-  }
-  body {
-    font-family: 'Arial', sans-serif;
-    background: linear-gradient(to bottom, #fad0c4, #ffd1ff);
-     color: #696060;
-    margin: 0;
-    padding: 0;
-    background: linear-gradient(to bottom, #F4CA96, #7E83E7,#FFFFFF);
+
+
+.homeContainer {
+  padding: 80px 5% 60px;
+  display: flex;
+  flex-direction: column;
+  gap: 80px;
+  max-width: 1400px;
+  margin: 0 auto; /* Centre le contenu */
+}
+
+.bioSection, .artworkSection {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 40px; /* Espacement entre texte et image */
+  flex-wrap: wrap;
+}
+
+.bioText, .artworkText {
+  flex: 1;
+  min-width: 300px; /* Taille minimale pour éviter un contenu trop écrasé */
+}
+
+.bioText h2 {
+  font-family: 'Antonellie', cursive;
+  font-size: 2.5rem;
+  margin-bottom: 20px;
+  color: #1f195c;
+}
+
+.bioText p, .artworkText p {
+  font-size: 1.2rem; /* Taille plus lisible */
+  line-height: 1.6;
+  color: #2c2c2c;
+}
+
+.contactBtn {
+  margin-top: 20px;
+  padding: 12px 30px;
+  background-color: #1f195c;
+  color: white;
+  border: none;
+  border-radius: 25px;
+  font-size: 16px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.contactBtn:hover {
+  background-color: #2a2278;
+}
+
+.bioImage, .artworkImage {
+  flex: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-width: 300px;
+}
+
+.artworkImage img {
+  border-radius: 100px;
+  width: 100%;
+  max-width: 350px;
+  height: auto;
+  object-fit: cover;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s ease;
+}
+
+.bioImage img {
+  border-radius: 150px;
+  width: 100%;
+  max-width: 350px;
+  height: auto;
+  object-fit: cover;
+  /* box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1); */
+  transition: transform 0.3s ease;
+}
+
+.bioImage img:hover, .artworkImage img:hover {
+  transform: scale(1.05);
+}
+
+/* Media Queries pour différentes tailles d'écran */
+
+/* Grand écran */
+@media (min-width: 1200px) {
+  .homeContainer {
+    padding: 100px 5% 80px;
+    gap: 120px;
   }
   
+  .bioText h2 {
+    font-size: 3rem;
+  }
+  
+  .bioText p, .artworkText p {
+    font-size: 1.3rem;
+  }
+  
+  .bioImage img, .artworkImage img {
+    max-width: 400px;
+  }
+}
+
+/* Tablettes et petits écrans */
+@media (max-width: 992px) {
+  .homeContainer {
+    padding: 60px 5% 40px;
+    gap: 60px;
+  }
+  
+  .bioText h2 {
+    font-size: 2.2rem;
+  }
+  
+  .bioText p, .artworkText p {
+    font-size: 1.1rem;
+  }
+}
+
+/* Tablettes et mobiles en mode paysage */
+@media (max-width: 768px) {
+  .homeContainer {
+    padding: 40px 5% 30px;
+    gap: 50px;
+  }
+  
+  .bioSection, .artworkSection {
+    flex-direction: column;
+    text-align: center;
+  }
+  
+  .bioSection {
+    flex-direction: column-reverse; /* Image au-dessus du texte */
+  }
+  
+  .bioText, .artworkText {
+    max-width: 100%;
+  }
+  
+  .bioText h2 {
+    font-size: 2rem;
+  }
+  
+  .contactBtn {
+    margin: 20px auto 0;
+    display: block;
+  }
+}
+
+/* Petits mobiles */
+@media (max-width: 480px) {
+  .homeContainer {
+    padding: 30px 4% 20px;
+    gap: 40px;
+  }
+  
+  .bioText h2 {
+    font-size: 1.8rem;
+  }
+  
+  .bioText p, .artworkText p {
+    font-size: 1rem;
+  }
+  
+  .artworkImage img {
+    border-radius: 100px;
+    max-width: 280px;
+  }
+  
+  .bioImage img {
+    border-radius: 210px;
+    max-width: 280px;
+    padding: 60px;
+  }
+}

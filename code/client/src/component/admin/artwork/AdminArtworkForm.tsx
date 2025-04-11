@@ -102,7 +102,7 @@ const AdminArtworkForm = () => {
 				encType="multipart/form-data"
 			>
 				<p>
-					<label htmlFor="name">name:</label>
+					<label htmlFor="name">Nom</label>
 					{/* rependre STRICTEMENT le nom des colonnes SQL */}
 					<input
 						type="text"
@@ -118,7 +118,7 @@ const AdminArtworkForm = () => {
 					<small>{errors.name?.message}</small>
 				</p>
 				<p>
-					<label htmlFor="description">description</label>
+					<label htmlFor="description">Description</label>
 					{/* rependre STRICTEMENT le nom des colonnes SQL */}
 					<input
 						type="text"
@@ -135,7 +135,7 @@ const AdminArtworkForm = () => {
 				</p>
 
 				<p>
-					<label htmlFor="price">price</label>
+					<label htmlFor="price">prix</label>
 					{/* rependre STRICTEMENT le nom des colonnes SQL */}
 					<input
 						type="text"
@@ -152,7 +152,7 @@ const AdminArtworkForm = () => {
 				</p>
 
 				<p>
-					<label htmlFor="category_id">Category :</label>
+					<label htmlFor="category_id">Categorie:</label>
 					{/* rependre STRICTEMENT le nom des colonnes SQL */}
 
 					<select id="category_id" {...register("category_id")}>
@@ -171,7 +171,7 @@ const AdminArtworkForm = () => {
 
 				<p>
 					{/* Laurant */}
-					<label htmlFor="image">Image:</label>
+					<label htmlFor="image">Image</label>
 					{/* rependre STRICTEMENT le nom des colonnes SQL */}
 					<input
 						type="file"

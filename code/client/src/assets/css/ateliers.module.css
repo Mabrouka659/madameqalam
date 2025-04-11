@@ -1,0 +1,71 @@
+.ateliers {
+  min-height: 100vh;
+  padding: 100px 5% 60px;
+  background: linear-gradient(to bottom, #ffffff, #f4ca96, #7e83e7);
+  font-family: 'Anek Bangla', sans-serif;
+}
+
+.container {
+  display: flex;
+  flex-direction: column;
+  gap: 100px;
+}
+
+/* Titre principal */
+.title {
+  font-family: 'Antonellie', cursive;
+  font-size: 2.8rem;
+  color: #1f195c;
+  text-align: center;
+  margin-bottom: 30px;
+}
+
+.block {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 40px;
+  flex-wrap: wrap;
+}
+
+.block:nth-child(even) {
+  flex-direction: row-reverse;
+}
+
+.block img {
+  width: 100%;
+  max-width: 350px;
+  border-radius: 30px;
+  object-fit: cover;
+  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.08);
+}
+
+.block p {
+  flex: 1;
+  font-size: 1.3rem;
+  line-height: 1.8;
+  color: #2c2c2c;
+  max-width: 500px;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .block,
+  .block:nth-child(even) {
+    flex-direction: column;
+    text-align: center;
+  }
+  h1 {
+    text-align: center;
+    padding-top: 103px;
+}
+  .block img {
+    max-width: 100%;
+  }
+
+  .block p {
+    max-width: 100%;
+    text-align: center;
+  }
+}
+ 

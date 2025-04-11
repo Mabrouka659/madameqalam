@@ -7,8 +7,8 @@ const AdminHomePage = () => {
 	return (
 		<div className={styles.container}>
 			<h1>Administration</h1>
-			<p>coucou</p>
-			<Link to={"/admin/artwork"}>Manage artwork</Link>
+			   <p>Les oeuvres d'art</p>
+			<Link to={"/admin/artwork"}>Gérer les oeuvres d'art</Link>
 		</div>
 	);
 };

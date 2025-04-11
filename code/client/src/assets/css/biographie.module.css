@@ -1,11 +1,12 @@
 @font-face {
   font-family: 'Antonellie';
   src: url('/font/Antonellie Calligraphy Demo.ttf') format('truetype');
+  font-display: swap;
 }
 
-
-.Biographie {
-  background: linear-gradient(to bottom, #FFFFFF, #F4CA96, #7E83E7);
+/* Layout principal */
+.biographie {
+  /* background: linear-gradient(to bottom, #FFFFFF, #F4CA96, #7E83E7); */
   min-height: 100vh;
   padding: 100px 5% 60px;
   font-family: 'Anek Bangla', sans-serif;
@@ -14,59 +15,75 @@
   align-items: center;
 }
 
+.container {
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
+}
 
-/* Biographie */
-.title {
+.content {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 60px;
+  flex-wrap: wrap;
+}
+
+/* Section texte */
+.textSection {
+  flex: 1;
+  min-width: 300px;
+  max-width: 650px;
+}
+
+.mainTitle {
   font-family: 'Antonellie', cursive;
   font-size: 3rem;
   color: #111111e8;
   margin-bottom: 30px;
   text-align: left;
   line-height: 1;
- 
 }
 
-
-.bio-container {
-  display: flex;
-  justify-content: space-between;
-  align-items: flex-start;
-  flex-wrap: wrap;
-  max-width: 1200px;
-  width: 100%;
-  gap: 60px;
+.bioContent {
+  margin-bottom: 30px;
 }
 
-/* Texte */
-.bio-text {
-  flex: 1;
-  text-align: left;
-  max-width: 550px;
-  font-size: 16px;
-  color: #2c2c2c;
+.sectionTitle {
+  font-size: 1.5rem;
+  color: #000;
+  font-weight: bold;
+  margin: 20px 0 15px;
 }
 
-.bio-text h2,
-.bio-text h3,
-.bio-text h4,
-.bio-text h5 {
-  margin-top: 20px;
-  margin-bottom: 10px;
+.subsectionTitle {
   font-size: 1.1rem;
   color: #000;
   font-weight: bold;
+  margin: 20px 0 10px;
 }
 
-.bio-text p {
+.paragraph {
   margin-bottom: 16px;
   line-height: 1.7;
   font-size: 0.95rem;
   color: #333;
 }
 
-/* Bouton */
-.bio-text button {
-  margin-top: 30px;
+.experienceList {
+  list-style-type: disc;
+  padding-left: 20px;
+  margin: 10px 0;
+}
+
+.experienceList li {
+  margin-bottom: 8px;
+  line-height: 1.5;
+}
+
+/* Bouton contact */
+.contactBtn {
+  display: inline-block;
   padding: 12px 30px;
   background-color: #1f195c;
   color: white;
@@ -74,49 +91,109 @@
   border-radius: 25px;
   font-size: 16px;
   cursor: pointer;
-  transition: background-color 0.3s ease;
+  transition: all 0.3s ease;
+  text-decoration: none;
+  text-align: center;
 }
 
-.bio-text button:hover {
+.contactBtn:hover {
   background-color: #a04038;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
 
-/* Image capsule */
-.bio-image {
+.contactBtn:active {
+  transform: translateY(0);
+}
+
+/* Section image */
+.imageSection {
   flex: 1;
   display: flex;
   justify-content: center;
-  align-items: center;
-  max-width: 400px;
+  align-items: flex-start;
+  max-width: 100%; /* Modifié de 400px à 100% */
+  width: 100%; /* Ajouté pour assurer la pleine largeur */
 }
 
-.bio-image img {
+.profileImage {
   width: 100%;
-  height: auto;
-  border-radius: 200px;
+  height: auto; /* Modifié de 75% à auto pour maintenir les proportions */
+  border-radius: 282px; /* pour ajuster le rayon de l'image*/
   object-fit: cover;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.15);
+  transition: transform 0.3s ease;
 }
 
+.profileImage:hover {
+  transform: scale(1.02);
+}
 
-/* Adaptation pour mobile */
+/* Responsive pour tablettes */
+@media (max-width: 992px) {
+  .content {
+    gap: 40px;
+  }
+  
+  .mainTitle {
+    font-size: 2.5rem;
+  }
+}
+
+/* Responsive pour petites tablettes et smartphones */
 @media (max-width: 768px) {
-  .bio-container {
-    flex-direction: column;
+  .content {
+    flex-direction: column-reverse;
+    align-items: center;
+    gap: 30px;
+  }
+
+  .textSection, 
+  .imageSection {
+    width: 100%;
+    max-width: 100%;
+  }
+  
+  .imageSection {
+    margin-bottom: 20px;
+    max-width: 100%;
+  }
+  
+  .mainTitle {
+    text-align: center;
+    font-size: 2.2rem;
+  }
+  
+  .sectionTitle,
+  .subsectionTitle {
     text-align: center;
   }
-
-  .bio-text, .bio-image {
-    flex: none;
-    width: 100%;
-  }
-
-  .bio-image {
-    justify-content: center;
-    margin-top: 20px;
-  }
 }
 
+/* Responsive pour très petits écrans */
+@media (max-width: 480px) {
+  .biographie {
+    padding: 80px 4% 40px;
+  }
   
+  .mainTitle {
+    font-size: 2rem;
+  }
+  
+  .imageSection {
+    max-width: 100%;
+  }
+  
+  .contactBtn {
+    width: 100%;
+  }
+  /* ._bioText{
+    font-size: 1rem;
+    line-height: 1.5;
+    color: #2c2c2c;
+    margin: 5px;
+  } */
+}
   
    
   

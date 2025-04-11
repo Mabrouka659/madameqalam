@@ -1,91 +1,208 @@
-/*  Cache le menu en mode desktop */
-.btn-nav-mobile {
-  display: none;
+/* === Conteneur principal du nav === */
+.site-nav-container {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  padding: 0 15px;
 }
 
-/*  Affichage normal du menu */
-
-
-
+/* === Menu de navigation (liens) === */
 .site-nav {
-
   display: flex;
   justify-content: center;
-  margin-right: 190px;
   align-items: center;
-  gap: 25px;
-  flex:0.7 ;
- 
+  gap: 50px;
+  flex: 0.7;
+  margin: 0 auto;
 }
 
 .site-nav a {
   text-decoration: none;
-  color: #0f0403;
-  width: 100px;
+  color: #333;
+  font-weight: 700;
+  letter-spacing: 0.5px;
+  font-size: 1.4rem;
+  padding: 5px 0;
+  position: relative;
+  transition: color 0.3s ease;
 }
+
+.site-nav a::after {
+  content: '';
+  position: absolute;
+  width: 0;
+  height: 2px;
+  bottom: 0;
+  left: 0;
+  background-color: #6861ce;
+  transition: width 0.3s ease;
+}
+
+.site-nav a:hover {
+  color: #6861ce;
+}
+
+.site-nav a:hover::after {
+  width: 100%;
+}
+
+/* === Icône du compte === */
 .account-menu {
   position: relative;
+  margin-left: 10px;
 }
 
 .account-button {
   background: none;
   border: none;
   cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 5px;
+  border-radius: 50%;
+  transition: background-color 0.3s ease;
 }
 
+.account-button:hover {
+  background-color: rgba(104, 97, 206, 0.1);
+}
+
+.per-icon {
+  font-size: 24px;
+  color: #1f195c;
+}
+
+/* === Dropdown du compte === */
 .account-dropdown {
   position: absolute;
-  top: 40px;
+  top: 45px;
   right: 0;
   background-color: white;
-  /* border: 1px solid #ccc; */
   border-radius: 8px;
-  padding: 10px;
+  padding: 12px;
   z-index: 9999;
-  /* display: flex; */
-  /* flex-direction: column; */
-  /* gap: 10px; */
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  min-width: 150px;
+  animation: fadeIn 0.2s ease;
+}
 
-  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(-10px); }
+  to { opacity: 1; transform: translateY(0); }
 }
 
 .account-dropdown a {
   color: #333;
   text-decoration: none;
+  padding: 8px 12px;
+  border-radius: 4px;
+  transition: background-color 0.3s ease;
 }
 
 .account-dropdown a:hover {
-  color: #b35c00;
+  background-color: rgba(104, 97, 206, 0.1);
+  color: #6861ce;
 }
 
+.account-dropdown a::after {
+  display: none;
+}
 
-/*  Menu mobile */
-@media screen and (max-width: 768px) {
-  .btn-nav-mobile {
-      display: block; /* Montre le bouton burger */
-      font-size: 24px;
-      background: none;
-      border: none;
-      cursor: pointer;
-      color: #000;
+/* === Bouton menu burger === */
+.menu-btn {
+  display: none;
+  font-size: 24px;
+  background: none;
+  border: none;
+  cursor: pointer;
+  z-index: 1001;
+  color: #333;
+}
+
+/* === Responsive === */
+@media screen and (max-width: 992px) {
+  .site-nav {
+    gap: 20px;
+  }
+
+  .site-nav a {
+    font-size: 1rem;
+  }
+}
+
+@media (max-width: 768px) {
+  .menu-btn {
+    display: block;
+    position: absolute;
+    top: -17px;
+    right: 25px;
   }
 
   .site-nav {
-      display: none; /*  Cache le menu par défaut */
-      position: absolute;
-      top: 80px;
-      right: 0;
-      background: #fff;
-      width: 200px;
-      padding: 10px;
-      box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
-      border-radius: 5px;
-      z-index: 1000;
-      flex-direction: column; /*  Menu vertical */
+    display: none;
+    position: absolute;
+    top: 60px;
+    right: 0;
+    flex-direction: column;
+    background: white;
+    padding: 15px;
+    width: 200px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+    border-radius: 8px;
+    z-index: 1000;
+    align-items: flex-start;
   }
 
-  /*  Quand le menu est ouvert */
   .site-nav-visible {
-      display: flex;
+    display: flex;
+    animation: slideIn 0.3s ease;
+  }
+
+  @keyframes slideIn {
+    from { opacity: 0; transform: translateY(-20px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  .site-nav a {
+    width: 100%;
+    padding: 8px 0;
+  }
+
+  .account-menu {
+    width: 100%;
+    margin-top: 5px;
+  }
+
+  .account-button {
+    width: 100%;
+    justify-content: flex-start;
+    border-radius: 4px;
+    padding: 8px;
+  }
+
+  .account-dropdown {
+    position: static;
+    box-shadow: none;
+    padding: 5px 0 0 0;
+    margin-top: 10px;
+    animation: none;
+    min-width: unset;
+  }
+
+  .account-dropdown a {
+    padding-left: 10px;
+  }
+}
+
+@media screen and (max-width: 480px) {
+  .site-nav {
+    width: 180px;
+    top: 60px;
+    padding: 12px;
   }
 }

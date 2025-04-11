@@ -33,14 +33,12 @@ public connection= async(data: Partial<User>)=>{
         headers:{
             'Content-type':'application/json',
         },
-body:JSON.stringify(data),
+        body:JSON.stringify(data),
     });
 
 
 const response = await fetch(request);
    
-
-
     //renvoyer les résultats de la réponse 
     return response.json();
 
@@ -60,10 +58,7 @@ body:JSON.stringify(data),
 
 
 const response = await fetch(request);
-   
-
-
-    //renvoyer les résultats de la réponse 
+       //renvoyer les résultats de la réponse 
     return response.json();
 
 };
