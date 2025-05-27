@@ -21,7 +21,7 @@ class BookingController {
 		// json : formater une réponse en JSON
 		res.status(200).json({
 			status: 200,
-			message: "OK",
+			message: "Liste des réservations récupérée",
 			data: results,
 		});
 	};
@@ -45,11 +45,10 @@ class BookingController {
 		// json : formater une réponse en JSON
 		res.status(200).json({
 			status: 200,
-			message: "OK",
+			message: "Réservation récupérée",
 			data: results,
 		});
 	};
-
 
 	public insert = async (req: Request, res: Response) => {
 		// créer un  enregistrements
@@ -71,12 +70,12 @@ class BookingController {
 		// json : formater une réponse en JSON
 		res.status(201).json({
 			status: 201,
-			message: "booking créer ",
+			message: "Réservation créée ",
 			data: results,
 		});
 	};
 	public update = async (req: Request, res: Response) => {
-		// modifier un enregistrement 
+		// modifier un enregistrement
 		//req.body permet de récuperer le contenu de la requéte HTTP
 		const results = await new BookingRepository().update(req.body);
 		// console.log(results);
@@ -84,7 +83,7 @@ class BookingController {
 		// si la requête SQL renvoie une erreur
 		if (results instanceof Error) {
 			res.status(400).json({
-				status:400,
+				status: 400,
 				//afficher un simple message pour la production,sinon afficher l'erreur
 				message: process.env.NODE_ENV === "prod" ? "Error" : results,
 			});
@@ -95,12 +94,12 @@ class BookingController {
 		// json : formater une réponse en JSON
 		res.status(200).json({
 			status: 200,
-			message: "OK",
+			message: "Réservation mise à jour",
 			data: results,
 		});
 	};
-	public delete  = async (req: Request, res: Response) => {
-		// supprimer un enregistrement 
+	public delete = async (req: Request, res: Response) => {
+		// supprimer un enregistrement
 		//req.body permet de récuperer le contenu de la requéte HTTP
 		const results = await new BookingRepository().delete(req.body);
 		// console.log(results);
@@ -108,7 +107,7 @@ class BookingController {
 		// si la requête SQL renvoie une erreur
 		if (results instanceof Error) {
 			res.status(400).json({
-				status:400,
+				status: 400,
 				//afficher un simple message pour la production,sinon afficher l'erreur
 				message: process.env.NODE_ENV === "prod" ? "Error" : results,
 			});
@@ -119,12 +118,10 @@ class BookingController {
 		// json : formater une réponse en JSON
 		res.status(200).json({
 			status: 200,
-			message: "Booking deleted",
+			message: "Réservation supprimée",
 			data: results,
 		});
 	};
-
 }
-
 
 export default BookingController;

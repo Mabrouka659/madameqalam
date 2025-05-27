@@ -9,6 +9,9 @@ class WorkshopRouter {
 	public getRoutes = () => {
 		this.router.get("/", new WorkshopController().index);
 		this.router.get("/:id", new WorkshopController().one);
+		this.router.post("/", new WorkshopController().insert);
+		this.router.put("/:id", new WorkshopController().update);
+		this.router.delete("/:id", new WorkshopController().delete);
 
 		return this.router;
 	};

@@ -1,7 +1,7 @@
 import express, { type Request, type Response } from "express";
 import BookingController from "../controller/booking_controller.js";
 
-class bookingRouter {
+class BookingRouter {
 	//propriétés
 	private router = express.Router();
 
@@ -15,10 +15,8 @@ class bookingRouter {
 
 		this.router.delete("/", new BookingController().delete);
 
-
-
 		return this.router;
 	};
 }
 
-export default bookingRouter;
+export default BookingRouter;

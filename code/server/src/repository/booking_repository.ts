@@ -1,7 +1,7 @@
-
 import { FORMERR } from "node:dns";
 import type Booking from "../model/booking.js";
-import MySQLService from "../service/mysql_service.js";class BookingRepository {
+import MySQLService from "../service/mysql_service.js";
+class BookingRepository {
 	// nom de la table SQL
 	private table = "booking";
 
@@ -126,57 +126,50 @@ import MySQLService from "../service/mysql_service.js";class BookingRepository {
 	};
 	public update = async (
 		data: Partial<Booking>,
-	): Promise<Booking[] | unknown> => { 
+	): Promise<Booking[] | unknown> => {
 		const connection = await new MySQLService().connect();
-		const sql= `
+		const sql = `
 		UPDATE 
 		${process.env.MYSQL_DATABASE}.${this.table}
         SET
-		${this.table}. datetime = :datetime,
-		${this.table}.  address= :address,
-		${this.table}.  user_id= :user_id,
-		${this.table}.  workshop_id= :workshop_id,
+		${this.table}.datetime = :datetime,
+		${this.table}.address= :address,
+		${this.table}.user_id= :user_id,
+		${this.table}.workshop_id= :workshop_id
 		WHERE
-		${this.table}.booking_id = :booking_id;
+		${this.table}.id = :id;
 `;
 
+		try {
+			const [results] = await connection.execute(sql, data);
+			//si le requête est reussi
+			return results;
+		} catch (error) {
+			return error;
+		}
+	};
 
-try {
-const[results]=await connection.execute(sql,data);
-//si le requête est reussi
-return results;
-}
-catch(error){
-	return error;
-}
-};
-
-public delete = async (
-	data: Partial<Booking>,): Promise<Booking[] | unknown> => 
-		{const connection = await new MySQLService().connect();
-const sql =`
+	public delete = async (
+		data: Partial<Booking>,
+	): Promise<Booking[] | unknown> => {
+		const connection = await new MySQLService().connect();
+		const sql = `
 
 DELETE FROM 
 
 ${process.env.MYSQL_DATABASE}.${this.table}
 WHERE 
-${this.table}.booking_id =:booking_id;
+${this.table}.id = :id;
 
-`
-;
-try{
-const[results]=await connection.execute(sql,data);
-//si la requete est echoue
-return results;
-}catch(error){
-	return error;
-}
+`;
+		try {
+			const [results] = await connection.execute(sql, data);
+			//si la requete est echoue
+			return results;
+		} catch (error) {
+			return error;
+		}
 	};
-
-
-
-
-	}
-
+}
 
 export default BookingRepository;

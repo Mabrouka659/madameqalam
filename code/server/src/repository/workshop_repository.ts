@@ -1,4 +1,3 @@
-
 import type Workshop from "../model/workshop.js";
 import MySQLService from "../service/mysql_service.js";
 
@@ -66,7 +65,7 @@ class WorkshopRepository {
 
 	public selectOne = async (
 		data: Partial<Workshop>,
-	): Promise<Workshop| unknown> => {
+	): Promise<Workshop | unknown> => {
 		// connexion au serveur MYSQL
 		const connection = await new MySQLService().connect();
 
@@ -91,6 +90,103 @@ class WorkshopRepository {
 
 			// si la réquete a échouée
 			return result;
+		} catch (error) {
+			return error;
+		}
+	};
+	public insert = async (
+		data: Partial<Workshop>,
+	): Promise<Workshop | unknown> => {
+		// connexion au serveur MYSQL
+		const connection = await new MySQLService().connect();
+
+		// requéte SQL
+		// SELECT role.* FROM madameqalam_dev.orders  WHERE orders.id = IN (1,2);
+		const sql = `
+        INSERT INTO
+		${process.env.MYSQL_DATABASE}.${this.table}
+		(name, description, price)
+		VALUES
+       (:name, :description,:price)
+    `;
+		// exécuter la requéte
+		//try / catch : permet d'éxecuter une instruction . si l'instruction échoue , une erreur
+		// est récupérée
+		try {
+			// récupérer les résultats de la requéte
+			const [results] = await connection.execute(sql, data);
+			// récupere l'ID généré
+			// biome-ignore lint/suspicious/noExplicitAny: <explanation>
+			const insertId = (results as any).insertId;
+
+			// récuperer l'enregisterement créé
+			return this.selectOne({ id: insertId });
+		} catch (error) {
+			return error;
+		}
+	};
+	public update = async (
+		data: Partial<Workshop>,
+	): Promise<Workshop | unknown> => {
+		// connexion au serveur MYSQL
+		const connection = await new MySQLService().connect();
+
+		// requéte SQL
+		// SELECT role.* FROM madameqalam_dev.orders  WHERE orders.id = IN (1,2);
+		const sql = `
+		UPDATE
+        ${process.env.MYSQL_DATABASE}.${this.table}
+		SET 
+		name = :name,
+		description = :description,
+		price = :price
+				
+
+		WHERE
+			id = :id
+        ;
+    `;
+		// exécuter la requéte
+		//try / catch : permet d'éxecuter une instruction . si l'instruction échoue , une erreur
+		// est récupérée
+		try {
+			// récupérer les résultats de la requéte
+			await connection.execute(sql, data);
+
+			// si la réquete a échouée
+			return this.selectOne({ id: data.id });
+		} catch (error) {
+			return error;
+		}
+	};
+
+	public delete = async (
+		data: Partial<Workshop>,
+	): Promise<Workshop | unknown> => {
+		// connexion au serveur MYSQL
+		const connection = await new MySQLService().connect();
+
+		// requéte SQL
+		// SELECT role.* FROM madameqalam_dev.orders  WHERE orders.id = IN (1,2);
+		const sql = `
+		DELETE FROM
+        ${process.env.MYSQL_DATABASE?.toString()}.${this.table}
+		WHERE
+			id = :id
+        
+    `;
+		// exécuter la requéte
+		//try / catch : permet d'éxecuter une instruction . si l'instruction échoue , une erreur
+		// est récupérée
+		try {
+			// exécute de la requéte
+			const [result] = await connection.execute(sql, data);
+			// biome-ignore lint/suspicious/noExplicitAny: <explanation>
+			const affectedRows = (result as any).affectedRows;
+
+			// si la réquete a échouée
+
+			return affectedRows > 0;
 		} catch (error) {
 			return error;
 		}
