@@ -98,7 +98,7 @@ class WorkshopController {
 		};
 
 		// Vérifier si le workshop existe avant de le mettre à jour
-		const exists = await new WorkshopRepository().update({ id: data.id });
+		const exists = await new WorkshopRepository().selectOne({ id: data.id });
 		if (!exists) {
 			res.status(404).json({
 				status: 404,

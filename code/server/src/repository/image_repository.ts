@@ -15,7 +15,7 @@ class ImageRepository {
 		const connection = await new MySQLService().connect();
 
 		// requéte SQL
-		// SELECT role.* FROM madameqalam_dev.school;
+		// SELECT role.* FROM madameqalam_.;
 		const sql = `
        SELECT 
         ${this.table}.*
@@ -52,7 +52,7 @@ class ImageRepository {
 		const connection = await new MySQLService().connect();
 
 		// requéte SQL
-		// SELECT role.* FROM madameqalam_dev.school WHERE id = 1;
+		// SELECT role.* FROM madameqalam_dev.user WHERE id = 1;
 		const sql = `
        SELECT
         ${this.table}.*

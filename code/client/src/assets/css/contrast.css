@@ -1,0 +1,28 @@
+button{
+    background-color: #ffffff !important;
+    color: #000 !important;
+    border: 2px solid #cccccc !important;
+    padding:  8px 12px !important;
+    border-radius: 4px !important;
+    cursor: pointer !important;
+}
+/*Contraste active - version super forte*/
+body.contrast,
+body.contrast *,
+body.contrast div,
+body.contrast section,
+body.contrast header,
+body.contrast main,
+body.contrast p,
+body.contrast h1,
+body.contrast h2,
+body.contrast h3{
+    
+    background-color:#000 !important;
+    color:#ffff00 !important ;
+}
+body.contrast button {
+    background-color: #ffff00 !important ;
+    color: #000 !important ;
+    border: 2px solid #fff !important ;
+}

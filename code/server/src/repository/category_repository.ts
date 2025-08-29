@@ -125,7 +125,8 @@ class CategoryRepository {
 	public update = async (
 		data: Partial<Category>,
 	): Promise<Category | unknown> => {
-		console.log(" Repository - Début update avec data:", data);
+
+		console.log(" 🟡Repository - Début update avec data:", data);
 
 		// Connexion au serveur MYSQL
 		const connection = await new MySQLService().connect();
@@ -134,33 +135,39 @@ class CategoryRepository {
 			// Les données sont déjà validées dans le controller
 			const { id, name } = data;
 
-			console.log(`Repository - ID: ${id} (type: ${typeof id}), Name: ${name}`);
+			console.log(`🟡 Repository - ID: ${id} (type: ${typeof id}), Name: ${name}`);
 
 			// Requête SQL simple
 			const sql = `UPDATE ${process.env.MYSQL_DATABASE}.${this.table} SET name = ? WHERE id = ?`;
 
-			console.log(" Repository - Exécution SQL:", sql);
-			console.log("Repository - Paramètres:", [name, id]);
+			console.log(" 🟡 Repository - Exécution SQL:", sql);
+			console.log(" 🟡 Repository - Paramètres:", [name, id]);
 
 			const [results] = await connection.execute(sql, [name, id]);
 			// biome-ignore lint/suspicious/noExplicitAny: <explanation>
 			const updateResult = results as any;
 
-			console.log("Repository - Résultat SQL complet:", updateResult);
-			console.log(" Repository - Affected rows:", updateResult.affectedRows);
+			console.log("🟡 Repository - Résultat SQL complet:", updateResult);
+			console.log(" 🟡  Repository - Affected rows:", updateResult.affectedRows);
 
 			if (updateResult.affectedRows === 0) {
+				 console.log("🔴 REPOSITORY - Aucune ligne affectée - THROW ERROR");
 				throw new Error(`Aucune catégorie trouvée avec l'ID ${id}`);
 			}
 
 			const result = { id, name };
-			console.log(" Repository - Succès, retour:", result);
+			console.log(" 🟢 Repository - Succès, retour:", result);
+			 console.log("🟢 REPOSITORY - Type du retour:", typeof result);
+        console.log("🟢 REPOSITORY - Est-ce une Error?", result instanceof Error);
+
 			return result;
 		} catch (error) {
-			console.error("Repository - Erreur:", error);
+			console.error("🔴 Repository - Erreur:", error);
+			 console.log("🔴 REPOSITORY - Type de l'erreur:", typeof error);
+        console.log("🔴 REPOSITORY - Est-ce une Error?", error instanceof Error);
 			return error;
 		} finally {
-			console.log(" Repository - Fermeture connexion");
+			console.log("🟡 Repository - Fermeture connexion");
 			await connection.end();
 		}
 	};

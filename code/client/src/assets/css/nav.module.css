@@ -69,18 +69,24 @@
   background-color: rgba(104, 97, 206, 0.1);
 }
 
-.per-icon {
-  font-size: 24px;
+/* .per-icon {
+  font-size: 50px;
   color: #1f195c;
-}
+} */
 
+.account-icon {
+  font-size: 40px !important ;  /*!important pour force la taille */
+  color:#1f195c; 
+  cursor: pointer; /*pour avoir la main qui clique*/
+  display: block;  /*pour assure que l'icone s'affiche correctement */
+}
 /* === Dropdown du compte === */
 .account-dropdown {
   position: absolute;
   top: 45px;
   right: 0;
   background-color: white;
-  border-radius: 8px;
+  border-radius: 08px;
   padding: 12px;
   z-index: 9999;
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);

@@ -1,7 +1,19 @@
 import styles from "../assets/css/ateliers.module.css";
+import { Helmet } from "react-helmet";
 
 const AteliersPage = () => {
   return (
+    <>
+
+      <Helmet >
+        <title> Ateliers - MAdame Qalam</title>
+        <meta
+          name="description"
+          content="Découvrez les ateliers de calligraphierie arabe artistique animés par Madame Qalam.Participes à des ateliers créatifs pour tous les âges, o
+      ou vous apprendres à créer des oeuvres uniques en utilisant l'art des lettres arabes."
+        />
+      
+ </Helmet>  
     <section className={styles.ateliers}>
       <div className={styles.container}>
         <h2 className={styles.title}>Madame Qalam</h2>
@@ -16,7 +28,7 @@ const AteliersPage = () => {
         </div>
 
         <div className={styles.block}>
-          <img src="/img/droit de femmes.jpg" alt="Journée de droits de femmes" />
+          <img src="/img/droit-de-femmes.jpg" alt="Journée de droits de femmes" />
           <p>
             Cette photo a été prise lors de la Journée des droits des femmes 2024, pendant un atelier de calligraphie animé dans une maison de quartier.
             <br />
@@ -37,7 +49,8 @@ const AteliersPage = () => {
           </p>
         </div>
       </div>
-    </section>
+      </section>
+      </>
   );
 };
 

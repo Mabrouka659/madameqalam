@@ -1,9 +1,19 @@
-import profileImage from "../../public/img/profileImage.jpg";
+
 import styles from "../assets/css/biographie.module.css";
 import { Link } from "react-router-dom";
+import { Helmet } from "react-helmet";
+const profileImage = "/img/profileImage.jpg";
 
 const BiographiePage = () => {
   return (
+    <>
+
+      <Helmet>
+        <title>Biographie - Madame Qalam</title>
+        <meta
+          name="description"
+        content="Madame Qalam, femme calligraphe dont le qalam trace des histoires inspirées des mots, des lettres et de la culture arabe."/>
+      </Helmet>
     <section className={styles.biographie}>
       <div className={styles.container}>
         <div className={styles.content}>
@@ -61,7 +71,9 @@ const BiographiePage = () => {
           </div>
         </div>
       </div>
-    </section>
+      </section>
+      </>
+      
   );
 };
 

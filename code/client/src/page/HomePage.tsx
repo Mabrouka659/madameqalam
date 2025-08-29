@@ -1,8 +1,16 @@
 import styles from '../assets/css/home.module.css';
 import Notice from '../component/common/Notice';
-
+import { Helmet } from 'react-helmet';
 const HomePage = () => {
   return (
+    <>
+      <Helmet>
+        <title>Accueil - Madame Qalam</title>
+        <meta
+          name='description'
+        content='Bienvenue dans l’univers de Madame Qalam, Quand le qalam parle, les lettres dansent'/>
+      </Helmet>
+
     <section className={styles.home}>
       <div className={styles.homeContainer}>
         {/* Utiliser directement le composant Notice */}
@@ -35,7 +43,8 @@ const HomePage = () => {
           </div>
         </div>
       </div>
-    </section>
+      </section>
+      </>
   );
 };
 

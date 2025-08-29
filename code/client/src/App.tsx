@@ -20,16 +20,18 @@ le nom du composant devient une balise
 // import './assets/css/fonts.css';
 import "./assets/css/reset.module.css";
 import "./assets/css/style.module.css";
+import "./assets/css/Contrast.css";
  import { RouterProvider } from "react-router-dom";
  import router from "./service/router";
 import { UserProvider } from "./provider/UserProvider";
-
+import ContrastToggle from "./component/common/ContrastToggle";
 
 
 const App = () => {
   return (
-  <UserProvider>
-			<RouterProvider router={router} />
+    <UserProvider>
+      <ContrastToggle/>
+      <RouterProvider router={router} />
 		</UserProvider>
     )
 };

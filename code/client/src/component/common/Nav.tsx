@@ -52,7 +52,7 @@ const Nav = () => {
 		<Link to="/biographie" onClick={closeAllMenus}>Biographie</Link>
 
 		<div className={styles["account-menu"]}>
-			<RiAccountPinBoxFill onClick={toggleDropdown} />
+					<RiAccountPinBoxFill onClick={toggleDropdown} className={styles["account-icon"]} />
 			{dropdownOpen && (
 				<div className={styles["account-dropdown"]}>
 					{!user?.id && (
