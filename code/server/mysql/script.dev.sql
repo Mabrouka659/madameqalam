@@ -78,7 +78,10 @@ CREATE TABLE madameqalam_dev.image(
 VaLUES
 ( NULL, 'portrait'),
 (NULL,  'gourde '),
-(NULL,'carte postale')
+(NULL,'carte postale'),
+(NULL, 'mug'),
+(NULL, 'Totebag'),
+(NULL, 'Trouse')
 ;
 
 INSERT INTO madameqalam_dev.workshop
@@ -99,30 +102,38 @@ VaLUES
 
 INSERT INTO madameqalam_dev.artwork
 VaLUES
-( NULL, 'amour', 'mour en calligraphie arabe artistique ', 100, 1),
-( NULL, 'espoir','crèation artistique du lettre',100, 1),
-( NULL, 'la joie','la joie du lettre en calligraphie arabe',150, 2),
-( NULL, 'fleur','creation du fleur en calligraphie artistique', 200, 2),
-( NULL, 'coeur ','creation du coeur avec le mots amour ',200, 2),
-( NULL, 'pigeon','creation du pigeon avec le mots liberte',150, 2),
-( NULL, 'Hind','prenom hind en calligraphie', 60, 3)
+( NULL, '3chek','amour en calligraphie arabe artistique ', 100, 3),
+( NULL, 'adadportrait','adad en calligraphie arabe artistique ',100, 1),
+( NULL, 'droit de femmes','portrait des femmes en calligraphie arabe artistique ',100, 1),
+( NULL, 'droit de femmes1','portrait des femmes en calligraphie arabe artistique ',100, 1),
+( NULL, 'djamilaportrait','djamila en calligraphie arabe artistique',150, 1),
+( NULL, 'angel davisportrait','angel davis en calligraphie arabe artistique', 200, 1),
+( NULL, 'adelgourde','adel en calligraphie arabe artistique sur une gourde ',200, 2),
+( NULL, 'rosaparksgourde','rosaparks en calligraphie arabe artistique sur une gourde ',150, 2),
+( NULL, 'adelMugblanc','adel en calligraphie arabe artistique sur une mug blanc ',150, 4),
+( NULL, 'adelMugnoir','adel en calligraphie arabe artistique sur une mug noir ',150, 4),
+( NULL, 'adelMugrouge','adel en calligraphie arabe artistique sur une mug rouge ',150, 4),
+( NULL, 'Mug calligraphie ','femmes célèbres en calligraphie arabe artistique sur des mugs ',150, 4),
+( NULL, 'Totebag ','Totebag en calligraphie arabe artistique',150, 5),
+( NULL, 'Trouse','Trouse creer avec des femmes célèbres en calligraphie arabe artistique ',150, 6)
 ;
 
 INSERT INTO madameqalam_dev.image
 VaLUES
-(NULL, 'amour.jpg ',1),
-(NULL,'espoir.jpg',2 ),
-(NULL,'coeur.jpg',2),
-(NULL,'Hind.jpg',3),
-(NULL,'la joie.jpg',3),
-(NULL,'fleur.jpg',3),
-(NULL,'pigeon.jpg',4),
-(NULL, 'amour.jpg ',5),
-(NULL,'espoir.jpg',5 ),
-(NULL,'coeur.jpg',6),
-(NULL,'Hind.jpg',6),
-(NULL,'la joie.jpg',6),
-(NULL,'fleur.jpg',7)
+(NULL, '3chek.jpg ',3),
+(NULL,'adadportrait.jpg',1),
+(NULL,'droit de femmes.jpg',1),
+(NULL,'droit de femmes1.jpg',1),
+(NULL,'djamilaportrait.jpg', 1),
+(NULL,'angel davisportrait.jpg',1),
+(NULL,'adelgourde.jpg',2),
+(NULL, 'rosaparksgourde.jpg ',2),
+(NULL,'adelMugblanc.jpg',4),
+(NULL,'adelMugnoir.jpg',4),
+(NULL,'adelMugrouge.jpg',4),
+(NULL,'Mug calligraphie.jpg',4),
+(NULL,'Totebagg .jpg',5),
+
 ;
 
 
